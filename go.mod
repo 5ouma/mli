@@ -3,6 +3,7 @@ module github.com/5ouma/mli
 go 1.21.5
 
 require (
+	github.com/andybrewer/mack v0.0.0-20220307193339-22e922cc18af
 	github.com/spf13/cobra v1.8.0
 )
 

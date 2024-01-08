@@ -1,3 +1,5 @@
+github.com/andybrewer/mack v0.0.0-20220307193339-22e922cc18af h1:PNE0xdyuLeOTujftqZs8DlhDoi+T54ONZhiGOxH5t2A=
+github.com/andybrewer/mack v0.0.0-20220307193339-22e922cc18af/go.mod h1:oUO968BJnuljnB5tntrY3w3zDfI5/PqnQ+RuiZ8aFhk=
 github.com/cpuguy83/go-md2man/v2 v2.0.3/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
