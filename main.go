@@ -1,10 +1,14 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package main
 
-import "github.com/5ouma/mli/cmd"
+import (
+	"os"
+
+	"github.com/5ouma/mli/cmd"
+)
 
 func main() {
-	cmd.Execute()
+	cmd := cmd.New()
+	if err := cmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }
