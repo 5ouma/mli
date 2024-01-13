@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"encoding/json"
 	"reflect"
 	"testing"
 
@@ -14,21 +15,28 @@ func Test_OAScript(t *testing.T) {
 	}
 
 	t.Log("🖋️ Add Login Items")
-	items := []string{"/System/Applications/Photos.app", "/System/Applications/Notes.app", "/System/Applications/App Store.app"}
-	t.Logf("  items: %s", items)
-	for _, path := range items {
-		if err := AddLoginItem(path); err != nil {
+	previousLoginItems := LoginItems{
+		{"App Store", "/System/Applications/App Store.app", false},
+		{"Calculator", "/System/Applications/Calculator.app", false},
+		{"Notes", "/System/Applications/Notes.app", false},
+		{"Photos", "/System/Applications/Photos.app", false},
+	}
+	data, _ := json.Marshal(previousLoginItems)
+	t.Logf("  previousLoginItems: %v", string(data))
+	for _, loginItem := range previousLoginItems {
+		if err := loginItem.Add(); err != nil {
 			t.Fatalf("🚨 %v", err)
 		}
 	}
 
 	t.Log("📘 Read Login Items")
-	if paths, err := GetLoginItemPaths(); err != nil {
+	currentLoginItems := LoginItems{}
+	if err := currentLoginItems.Get(); err != nil {
 		t.Fatalf("🚨 %v", err)
-	} else {
-		if !reflect.DeepEqual(paths, items) {
-			t.Error("🚨 Items are not the same")
-			t.Fatalf("  paths: %s", paths)
-		}
+	}
+	if !reflect.DeepEqual(previousLoginItems, currentLoginItems) {
+		t.Error("🚨 Items are not the same")
+		data, _ := json.Marshal(currentLoginItems)
+		t.Fatalf("  currentLoginItems: %v", string(data))
 	}
 }

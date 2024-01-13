@@ -1,7 +1,9 @@
 package utils
 
-import "path/filepath"
-
-func getFileName(path string) string {
-	return filepath.Base(path[:len(path)-len(filepath.Ext(path))])
+type loginItem struct {
+	Name   string
+	Path   string
+	Hidden bool
 }
+
+type LoginItems []*loginItem
