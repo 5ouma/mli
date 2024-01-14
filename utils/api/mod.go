@@ -1,4 +1,4 @@
-package utils
+package api
 
 type loginItem struct {
 	Name   string

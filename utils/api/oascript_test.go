@@ -1,17 +1,18 @@
-package utils
+package api
 
 import (
 	"encoding/json"
 	"reflect"
 	"testing"
 
+	"github.com/5ouma/mli/utils/ci"
 	"github.com/andybrewer/mack"
 )
 
 func Test_OAScript(t *testing.T) {
 	t.Log("🗑️ Delete Login Items")
 	if _, err := mack.Tell("System Events", "delete login items"); err != nil {
-		t.Fatalf("🚨 %v", err)
+		t.Fatal(ci.Err(err))
 	}
 
 	t.Log("🖋️ Add Login Items")
@@ -24,16 +25,16 @@ func Test_OAScript(t *testing.T) {
 	data, _ := json.Marshal(previousLoginItems)
 	t.Logf("  previousLoginItems: %v", string(data))
 	if err := previousLoginItems.Add(); err != nil {
-		t.Fatalf("🚨 %v", err)
+		t.Fatal(ci.Err(err))
 	}
 
 	t.Log("📘 Read Login Items")
-	currentLoginItems := LoginItems{}
+	var currentLoginItems LoginItems
 	if err := currentLoginItems.Get(); err != nil {
-		t.Fatalf("🚨 %v", err)
+		t.Fatal(ci.Err(err))
 	}
 	if !reflect.DeepEqual(previousLoginItems, currentLoginItems) {
-		t.Error("🚨 Items are not the same")
+		t.Error(ci.Err(ci.ErrorItemsNotSame))
 		data, _ := json.Marshal(currentLoginItems)
 		t.Fatalf("  currentLoginItems: %v", string(data))
 	}
