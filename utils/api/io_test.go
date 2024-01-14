@@ -29,29 +29,26 @@ func Test_IO(t *testing.T) {
 		},
 	}
 
+	t.Log("🏗️ Prepare LoginItems Structure")
+	previousLoginItems := LoginItems{
+		{"App Store", "/System/Applications/App Store.app", false},
+		{"Calculator", "/System/Applications/Calculator.app", false},
+		{"Notes", "/System/Applications/Notes.app", false},
+		{"Photos", "/System/Applications/Photos.app", false},
+	}
+	data, _ := json.Marshal(previousLoginItems)
+	t.Logf("  loginItems: %v", string(data))
+
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			t.Log("🏗️ Prepare LoginItems Structure")
-			previousLoginItems := LoginItems{
-				{"App Store", "/System/Applications/App Store.app", false},
-				{"Calculator", "/System/Applications/Calculator.app", false},
-				{"Notes", "/System/Applications/Notes.app", false},
-				{"Photos", "/System/Applications/Photos.app", false},
-			}
-			data, _ := json.Marshal(previousLoginItems)
-			t.Logf("  loginItems: %v", string(data))
-
 			t.Log("🖋️ Save Login Items")
-			dir := t.TempDir()
-			path := filepath.Join(dir, "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.json")
 			os.Create(path)
-			err := previousLoginItems.Save(path, test.force)
-			if !test.wantError && err != nil {
+			if err := previousLoginItems.Save(path, test.force); !test.wantError && err != nil {
 				t.Fatal(ci.Err(err))
 			} else if test.wantError && err == nil {
 				t.Fatal(ci.Err(fmt.Errorf("Expected an error")))
-			}
-			if test.wantError {
+			} else if test.wantError {
 				t.Logf(`  "%v"`, err)
 				t.SkipNow()
 			}
