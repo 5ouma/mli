@@ -23,10 +23,8 @@ func Test_OAScript(t *testing.T) {
 	}
 	data, _ := json.Marshal(previousLoginItems)
 	t.Logf("  previousLoginItems: %v", string(data))
-	for _, loginItem := range previousLoginItems {
-		if err := loginItem.Add(); err != nil {
-			t.Fatalf("🚨 %v", err)
-		}
+	if err := previousLoginItems.Add(); err != nil {
+		t.Fatalf("🚨 %v", err)
 	}
 
 	t.Log("📘 Read Login Items")
@@ -39,4 +37,11 @@ func Test_OAScript(t *testing.T) {
 		data, _ := json.Marshal(currentLoginItems)
 		t.Fatalf("  currentLoginItems: %v", string(data))
 	}
+}
+
+func ExampleLoginItems() {
+	loginItems := LoginItems{{"Not found", "/Applications/Not found.app", false}}
+	loginItems.Add()
+	// Output:
+	// ⚠️ app not found: "/Applications/Not found.app"
 }

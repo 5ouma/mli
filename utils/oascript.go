@@ -41,14 +41,17 @@ func (loginItems *LoginItems) Get() error {
 	return nil
 }
 
-func (loginItem *loginItem) Add() error {
-	if _, err := os.Stat(loginItem.Path); err != nil {
-		return errAppNotFound(loginItem.Path)
+func (loginItems *LoginItems) Add() error {
+	for _, loginItem := range *loginItems {
+		if _, err := os.Stat(loginItem.Path); err != nil {
+			fmt.Printf(`⚠️ app not found: "%s"`, loginItem.Path)
+			continue
+		}
+		msg, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden))
+		if err != nil {
+			return err
+		}
+		fmt.Println(msg)
 	}
-	msg, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden))
-	if err != nil {
-		return err
-	}
-	fmt.Println(msg)
 	return nil
 }
