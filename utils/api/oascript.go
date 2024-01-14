@@ -2,11 +2,11 @@ package api
 
 import (
 	"fmt"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
 
+	"github.com/5ouma/mli/utils"
 	"github.com/andybrewer/mack"
 )
 
@@ -43,7 +43,7 @@ func (loginItems *LoginItems) Get() error {
 
 func (loginItems *LoginItems) Add() error {
 	for _, loginItem := range *loginItems {
-		if _, err := os.Stat(loginItem.Path); err != nil {
+		if isExist, err := utils.IsExist(loginItem.Path); !isExist && err == nil {
 			fmt.Printf(`⚠️ app not found: "%s"`, loginItem.Path)
 			continue
 		}
