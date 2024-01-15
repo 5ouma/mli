@@ -2,13 +2,10 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
-
-	"github.com/5ouma/mli/utils/ci"
 )
 
 func Test_IO(t *testing.T) {
@@ -45,9 +42,9 @@ func Test_IO(t *testing.T) {
 			path := filepath.Join(t.TempDir(), "login_items.json")
 			os.Create(path)
 			if err := previousLoginItems.Save(path, test.force); !test.wantError && err != nil {
-				t.Fatal(ci.Err(err))
+				t.Fatalf("🚨 %v", err)
 			} else if test.wantError && err == nil {
-				t.Fatal(ci.Err(fmt.Errorf("Expected an error")))
+				t.Fatal("🚨 expected an error")
 			} else if test.wantError {
 				t.Logf(`  "%v"`, err)
 				t.SkipNow()
@@ -56,10 +53,10 @@ func Test_IO(t *testing.T) {
 			t.Log("📘 Read the Saved File")
 			var currentLoginItems LoginItems
 			if err := currentLoginItems.Load(path); err != nil {
-				t.Fatal(ci.Err(err))
+				t.Fatalf("🚨 %v", err)
 			}
 			if !reflect.DeepEqual(previousLoginItems, currentLoginItems) {
-				t.Error(ci.Err(ci.ErrorItemsNotSame))
+				t.Error("🚨 items are not the same")
 				data, _ := json.Marshal(currentLoginItems)
 				t.Fatalf("  currentLoginItems: %v", string(data))
 			}
