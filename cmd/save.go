@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +16,11 @@ func (c *Cmd) newSaveCmd() *cobra.Command {
 }
 
 func (c *Cmd) execSaveCmd(cmd *cobra.Command, args []string) error {
-	fmt.Println("a message from save")
+	if err := c.loginItems.Get(); err != nil {
+		return err
+	}
+	if err := c.loginItems.Save("./login_item.json", false); err != nil {
+		return err
+	}
 	return nil
 }

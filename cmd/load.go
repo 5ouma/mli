@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +16,11 @@ func (c *Cmd) newLoadCmd() *cobra.Command {
 }
 
 func (c *Cmd) execLoadCmd(cmd *cobra.Command, args []string) error {
-	fmt.Println("a message from load")
+	if err := c.loginItems.Load("./login_item.json"); err != nil {
+		return err
+	}
+	if err := c.loginItems.Add(); err != nil {
+		return err
+	}
 	return nil
 }
