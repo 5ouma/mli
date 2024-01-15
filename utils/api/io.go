@@ -13,7 +13,10 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 	} else if !force && isExist && err == nil {
 		return os.ErrExist
 	}
-	data, _ := json.MarshalIndent(loginItems, "", "  ")
+	data, err := json.MarshalIndent(loginItems, "", "  ")
+	if err != nil {
+		return err
+	}
 	if err := os.WriteFile(path, data, os.ModePerm); err != nil {
 		return err
 	}
@@ -23,7 +26,7 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 func (loginItems *LoginItems) Load(path string) error {
 	if isExist, err := utils.IsExist(path); err != nil {
 		return err
-	} else if !isExist && err == nil {
+	} else if !isExist {
 		return os.ErrNotExist
 	}
 	data, err := os.ReadFile(path)
