@@ -50,7 +50,7 @@ func (loginItems *LoginItems) Add() error {
 		if err != nil {
 			return err
 		}
-		fmt.Println(msg)
+		fmt.Printf("✅ %s\n", msg)
 	}
 	return nil
 }
