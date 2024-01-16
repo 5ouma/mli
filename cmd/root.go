@@ -16,10 +16,12 @@ func New() *Cmd {
 			Use:          "mli",
 			Short:        "short desc",
 			Long:         "long desc",
+			Version:      lib.Version(),
 			SilenceUsage: true,
 		},
 		loginItems: new(lib.LoginItems),
 	}
+	cmd.command.SetVersionTemplate("📑 {{.Use}} {{.Version}}\n")
 	cmd.command.AddCommand(
 		cmd.newSaveCmd(),
 		cmd.newLoadCmd(),
