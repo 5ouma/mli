@@ -4,22 +4,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func (c *Cmd) newSaveCmd() *cobra.Command {
+func (cmd *Cmd) newSaveCmd() *cobra.Command {
 	saveCmd := &cobra.Command{
 		Use:   "save",
 		Short: "save short desc",
 		Long:  "save long desc",
 		Args:  cobra.NoArgs,
-		RunE:  c.execSaveCmd,
+		RunE:  cmd.execSaveCmd,
 	}
 	return saveCmd
 }
 
-func (c *Cmd) execSaveCmd(cmd *cobra.Command, args []string) error {
-	if err := c.loginItems.Get(); err != nil {
+func (cmd *Cmd) execSaveCmd(command *cobra.Command, args []string) error {
+	if err := cmd.loginItems.Get(); err != nil {
 		return err
 	}
-	if err := c.loginItems.Save("./login_items.json", false); err != nil {
+	if err := cmd.loginItems.Save("./login_items.json", false); err != nil {
 		return err
 	}
 	return nil

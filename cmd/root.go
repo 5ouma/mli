@@ -6,13 +6,13 @@ import (
 )
 
 type Cmd struct {
-	root       *cobra.Command
+	command    *cobra.Command
 	loginItems *lib.LoginItems
 }
 
 func New() *Cmd {
 	cmd := &Cmd{
-		root: &cobra.Command{
+		command: &cobra.Command{
 			Use:          "mli",
 			Short:        "short desc",
 			Long:         "long desc",
@@ -20,13 +20,13 @@ func New() *Cmd {
 		},
 		loginItems: new(lib.LoginItems),
 	}
-	cmd.root.AddCommand(
+	cmd.command.AddCommand(
 		cmd.newSaveCmd(),
 		cmd.newLoadCmd(),
 	)
 	return cmd
 }
 
-func (c *Cmd) Execute() error {
-	return c.root.Execute()
+func (cmd *Cmd) Execute() error {
+	return cmd.command.Execute()
 }
