@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/5ouma/mli/utils/api"
+	"github.com/5ouma/mli/lib"
 	"github.com/spf13/cobra"
 )
 
 type Cmd struct {
 	root       *cobra.Command
-	loginItems *api.LoginItems
+	loginItems *lib.LoginItems
 }
 
 func New() *Cmd {
@@ -18,7 +18,7 @@ func New() *Cmd {
 			Long:         "long desc",
 			SilenceUsage: true,
 		},
-		loginItems: new(api.LoginItems),
+		loginItems: new(lib.LoginItems),
 	}
 	cmd.root.AddCommand(
 		cmd.newSaveCmd(),

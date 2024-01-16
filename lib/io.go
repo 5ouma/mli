@@ -1,14 +1,12 @@
-package api
+package lib
 
 import (
 	"encoding/json"
 	"os"
-
-	"github.com/5ouma/mli/utils"
 )
 
 func (loginItems *LoginItems) Save(path string, force bool) error {
-	if isExist, err := utils.IsExist(path); err != nil {
+	if isExist, err := isExist(path); err != nil {
 		return err
 	} else if !force && isExist && err == nil {
 		return os.ErrExist
@@ -24,7 +22,7 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 }
 
 func (loginItems *LoginItems) Load(path string) error {
-	if isExist, err := utils.IsExist(path); err != nil {
+	if isExist, err := isExist(path); err != nil {
 		return err
 	} else if !isExist {
 		return os.ErrNotExist
