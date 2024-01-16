@@ -12,11 +12,17 @@ func (cmd *Cmd) newLoadCmd() *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execLoadCmd,
 	}
+	loadCmd.Flags().String("file", "./login_items.json", "load from this JSON file")
 	return loadCmd
 }
 
 func (cmd *Cmd) execLoadCmd(command *cobra.Command, args []string) error {
-	if err := cmd.loginItems.Load("./login_items.json"); err != nil {
+	file, err := command.Flags().GetString("file")
+	if err != nil {
+		return err
+	}
+
+	if err := cmd.loginItems.Load(file); err != nil {
 		return err
 	}
 	if err := cmd.loginItems.Add(); err != nil {
