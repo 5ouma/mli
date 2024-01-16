@@ -16,7 +16,7 @@ func (c *Cmd) newLoadCmd() *cobra.Command {
 }
 
 func (c *Cmd) execLoadCmd(cmd *cobra.Command, args []string) error {
-	if err := c.loginItems.Load("./login_item.json"); err != nil {
+	if err := c.loginItems.Load("./login_items.json"); err != nil {
 		return err
 	}
 	if err := c.loginItems.Add(); err != nil {

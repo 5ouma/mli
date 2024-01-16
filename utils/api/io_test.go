@@ -42,7 +42,7 @@ func Test_Save(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			t.Log("🖋️ Save Login Items")
-			path := filepath.Join(t.TempDir(), "login_item.json")
+			path := filepath.Join(t.TempDir(), "login_items.json")
 			os.Create(path)
 			err := loginItems.Save(path, test.force)
 			if test.expectedError == nil && err != nil {
@@ -127,7 +127,7 @@ func Test_Load(t *testing.T) {
 			t.Log("🏗️ Prepare JSON Structure")
 			t.Log(test.content)
 
-			path := filepath.Join(t.TempDir(), "login_item.json")
+			path := filepath.Join(t.TempDir(), "login_items.json")
 			if test.createFile {
 				t.Log("🖋️ Save Login Items")
 				if err := os.WriteFile(path, []byte(test.content), os.ModePerm); err != nil {

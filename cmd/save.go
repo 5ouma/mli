@@ -19,7 +19,7 @@ func (c *Cmd) execSaveCmd(cmd *cobra.Command, args []string) error {
 	if err := c.loginItems.Get(); err != nil {
 		return err
 	}
-	if err := c.loginItems.Save("./login_item.json", false); err != nil {
+	if err := c.loginItems.Save("./login_items.json", false); err != nil {
 		return err
 	}
 	return nil
