@@ -27,6 +27,7 @@ func (loginItems *LoginItems) Get() error {
 	if err != nil {
 		return err
 	}
+
 	for i := range names {
 		hidden, err := strconv.ParseBool(hides[i])
 		if err != nil {
@@ -38,6 +39,7 @@ func (loginItems *LoginItems) Get() error {
 	sort.Slice(*loginItems, func(before, after int) bool {
 		return (*loginItems)[before].Name < (*loginItems)[after].Name
 	})
+
 	return nil
 }
 
@@ -52,5 +54,6 @@ func (loginItems *LoginItems) Add() error {
 		}
 		fmt.Printf("🔍 %s\n", loginItem.Name)
 	}
+
 	return nil
 }

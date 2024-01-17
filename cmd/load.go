@@ -31,5 +31,6 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 	fmt.Printf("✅ Successfully loaded from \"%s\"!\n", file)
+
 	return nil
 }

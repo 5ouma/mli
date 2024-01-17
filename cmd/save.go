@@ -36,5 +36,6 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 	fmt.Printf("✅ Successfully saved to \"%s\"!\n", file)
+
 	return nil
 }
