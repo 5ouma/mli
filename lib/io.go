@@ -8,7 +8,7 @@ import (
 func (loginItems *LoginItems) Save(path string, force bool) error {
 	if isExist, err := isExist(path); err != nil {
 		return err
-	} else if !force && isExist && err == nil {
+	} else if !force && isExist {
 		return os.ErrExist
 	}
 	data, err := json.MarshalIndent(loginItems, "", "  ")
