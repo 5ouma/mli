@@ -4,7 +4,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func (cmd *Cmd) newSaveCmd() *cobra.Command {
+func (cmd *cmd) newSaveCmd() *cobra.Command {
 	saveCmd := &cobra.Command{
 		Use:   "save",
 		Short: "save short desc",
@@ -17,7 +17,7 @@ func (cmd *Cmd) newSaveCmd() *cobra.Command {
 	return saveCmd
 }
 
-func (cmd *Cmd) execSaveCmd(command *cobra.Command, args []string) error {
+func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	file, err := command.Flags().GetString("file")
 	if err != nil {
 		return err

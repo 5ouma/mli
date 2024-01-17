@@ -4,7 +4,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func (cmd *Cmd) newLoadCmd() *cobra.Command {
+func (cmd *cmd) newLoadCmd() *cobra.Command {
 	loadCmd := &cobra.Command{
 		Use:   "load",
 		Short: "short load desc",
@@ -16,7 +16,7 @@ func (cmd *Cmd) newLoadCmd() *cobra.Command {
 	return loadCmd
 }
 
-func (cmd *Cmd) execLoadCmd(command *cobra.Command, args []string) error {
+func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 	file, err := command.Flags().GetString("file")
 	if err != nil {
 		return err

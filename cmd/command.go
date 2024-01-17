@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type Cmd struct {
+type cmd struct {
 	command    *cobra.Command
 	loginItems *lib.LoginItems
 }
 
-func New() *Cmd {
-	cmd := &Cmd{
+func New() *cmd {
+	cmd := &cmd{
 		command: &cobra.Command{
 			Use:          "mli",
 			Short:        "short desc",
@@ -29,6 +29,6 @@ func New() *Cmd {
 	return cmd
 }
 
-func (cmd *Cmd) Execute() error {
+func (cmd *cmd) Execute() error {
 	return cmd.command.Execute()
 }
