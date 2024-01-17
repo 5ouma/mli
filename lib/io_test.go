@@ -26,7 +26,7 @@ func Test_Save(t *testing.T) {
 		},
 	}
 
-	t.Log("🏗️ Prepare LoginItems Structure")
+	t.Log("🏗️ Prepare LoginItems structure")
 	loginItems := LoginItems{
 		{"App Store", "/System/Applications/App Store.app", false},
 		{"Calculator", "/System/Applications/Calculator.app", false},
@@ -65,7 +65,7 @@ func Test_Load(t *testing.T) {
 		expectedError error
 	}{
 		{
-			name: "✅ Load correctly",
+			name: "✅ Load successfully",
 			content: `[
   {
     "Name": "App Store",
@@ -124,7 +124,7 @@ func Test_Load(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			t.Log("🏗️ Prepare JSON Structure")
+			t.Log("🏗️ Prepare JSON structure")
 			t.Log(test.content)
 
 			path := filepath.Join(t.TempDir(), "login_items.json")

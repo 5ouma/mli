@@ -14,7 +14,7 @@ func (cmd *cmd) newLoadCmd() *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execLoadCmd,
 	}
-	loadCmd.Flags().String("file", "./login_items.json", "load from this JSON file")
+	loadCmd.Flags().String("file", "./login_items.json", "Load from this JSON file")
 	return loadCmd
 }
 
@@ -30,6 +30,6 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Add(); err != nil {
 		return err
 	}
-	fmt.Printf("✅ correctly loaded from \"%s\"!\n", file)
+	fmt.Printf("✅ Successfully loaded from \"%s\"!\n", file)
 	return nil
 }

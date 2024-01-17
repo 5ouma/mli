@@ -14,8 +14,8 @@ func (cmd *cmd) newSaveCmd() *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execSaveCmd,
 	}
-	saveCmd.Flags().String("file", "./login_items.json", "save to this JSON file")
-	saveCmd.Flags().BoolP("force", "f", false, "overwrite existing file")
+	saveCmd.Flags().String("file", "./login_items.json", "Save to this JSON file")
+	saveCmd.Flags().BoolP("force", "f", false, "Overwrite existing file")
 	return saveCmd
 }
 
@@ -35,6 +35,6 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Save(file, force); err != nil {
 		return err
 	}
-	fmt.Printf("✅ correctly saved to \"%s\"!\n", file)
+	fmt.Printf("✅ Successfully saved to \"%s\"!\n", file)
 	return nil
 }
