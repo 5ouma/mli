@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -33,5 +35,6 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Save(file, force); err != nil {
 		return err
 	}
+	fmt.Printf("✅ correctly saved to \"%s\"!\n", file)
 	return nil
 }

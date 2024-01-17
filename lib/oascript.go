@@ -33,6 +33,7 @@ func (loginItems *LoginItems) Get() error {
 			return err
 		}
 		*loginItems = append(*loginItems, &loginItem{names[i], path[i], hidden})
+		fmt.Printf("🔍 %s\n", names[i])
 	}
 	sort.Slice(*loginItems, func(before, after int) bool {
 		return (*loginItems)[before].Name < (*loginItems)[after].Name
@@ -46,11 +47,10 @@ func (loginItems *LoginItems) Add() error {
 			fmt.Printf("⚠️ app not found: \"%s\"\n", loginItem.Path)
 			continue
 		}
-		msg, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden))
-		if err != nil {
+		if _, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden)); err != nil {
 			return err
 		}
-		fmt.Printf("✅ %s\n", msg)
+		fmt.Printf("🔍 %s\n", loginItem.Name)
 	}
 	return nil
 }
