@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -24,6 +25,10 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
+	path, err := filepath.Abs(file)
+	if err != nil {
+		return err
+	}
 	force, err := command.Flags().GetBool("force")
 	if err != nil {
 		return err
@@ -32,10 +37,10 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Get(); err != nil {
 		return err
 	}
-	if err := cmd.loginItems.Save(file, force); err != nil {
+	if err := cmd.loginItems.Save(path, force); err != nil {
 		return err
 	}
-	fmt.Printf("✅ Successfully saved to \"%s\"!\n", file)
+	fmt.Printf("✅ Successfully saved to \"%s\"!\n", path)
 
 	return nil
 }

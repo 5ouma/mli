@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -23,14 +24,18 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
+	path, err := filepath.Abs(file)
+	if err != nil {
+		return err
+	}
 
-	if err := cmd.loginItems.Load(file); err != nil {
+	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
 	if err := cmd.loginItems.Add(); err != nil {
 		return err
 	}
-	fmt.Printf("✅ Successfully loaded from \"%s\"!\n", file)
+	fmt.Printf("✅ Successfully loaded from \"%s\"!\n", path)
 
 	return nil
 }
