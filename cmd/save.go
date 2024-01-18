@@ -10,8 +10,8 @@ import (
 func (cmd *cmd) newSaveCmd() *cobra.Command {
 	saveCmd := &cobra.Command{
 		Use:   "save",
-		Short: "save short desc",
-		Long:  "save long desc",
+		Short: "Save Login Items",
+		Long:  "💾 Save Login Items to JSON file",
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execSaveCmd,
 	}

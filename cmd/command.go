@@ -14,8 +14,8 @@ func New() *cmd {
 	cmd := &cmd{
 		command: &cobra.Command{
 			Use:          "mli",
-			Short:        "short desc",
-			Long:         "long desc",
+			Short:        "📑 Manage macOS Login Items",
+			Long:         "📑 Manage macOS Login Items with JSON",
 			Version:      lib.Version(),
 			SilenceUsage: true,
 		},

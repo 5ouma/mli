@@ -10,8 +10,8 @@ import (
 func (cmd *cmd) newLoadCmd() *cobra.Command {
 	loadCmd := &cobra.Command{
 		Use:   "load",
-		Short: "short load desc",
-		Long:  "long load desc",
+		Short: "Load Login Items",
+		Long:  "📂 Load Login Items from JSON file",
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execLoadCmd,
 	}
