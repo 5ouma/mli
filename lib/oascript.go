@@ -46,7 +46,7 @@ func (loginItems *LoginItems) Get() error {
 func (loginItems *LoginItems) Add() error {
 	for _, loginItem := range *loginItems {
 		if isExist, err := isExist(loginItem.Path); !isExist && err == nil {
-			fmt.Printf("⚠️ app not found: \"%s\"\n", loginItem.Path)
+			fmt.Printf("⚠️ not found: \"%s\"\n", loginItem.Path)
 			continue
 		}
 		if _, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden)); err != nil {
