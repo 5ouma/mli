@@ -15,7 +15,7 @@
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/5ouma/mli?style=flat-square)](https://github.com/5ouma/mli/commits/main)
 <br />
 [![Test](https://img.shields.io/github/actions/workflow/status/5ouma/mli/test.yml?label=test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/test.yml)
-[![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
+[![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=release&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
 
 </div>
 
