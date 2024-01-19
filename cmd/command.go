@@ -21,10 +21,12 @@ func New() *cmd {
 		},
 		loginItems: new(lib.LoginItems),
 	}
+	cmd.command.CompletionOptions.HiddenDefaultCmd = true
 	cmd.command.SetVersionTemplate("📑 {{.Use}} {{.Version}}\n")
+	cmd.command.SetErrPrefix("🚨")
 	cmd.command.AddCommand(
-		cmd.newSaveCmd(),
 		cmd.newLoadCmd(),
+		cmd.newSaveCmd(),
 	)
 	return cmd
 }
