@@ -1,0 +1,47 @@
+version: 1
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - ldflags:
+      - -s
+      - -w
+      - -X "{{ .ModulePath }}/lib.version=v{{ .Version }}"
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end }}
+
+checksum:
+  name_template: "checksums.txt"
+
+brews:
+  - url_template: "https://github.com/5ouma/{{ .ProjectName }}/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    commit_msg_template: "{{ .ProjectName }} {{ .Version }}"
+    folder: Formula
+    homepage: "https://github.com/5ouma/mli"
+    description: "📑 Manage macOS Login Items"
+    license: "MIT"
+    custom_block: depends_on :macos
+    test: system "#{bin}/#{name}", "-v"
+    extra_install: generate_completions_from_executable("#{bin}/#{name}", "completion")
+    repository:
+      owner: 5ouma
+      name: homebrew-formula
+      branch: "bump-{{ .ProjectName }}-{{ .Version }}"
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+      pull_request:
+        enabled: true
+
+changelog:
+  use: github-native

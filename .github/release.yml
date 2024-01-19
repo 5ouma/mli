@@ -1,0 +1,31 @@
+changelog:
+  categories:
+    - title: 🛠️ Breaking Changes
+      labels:
+        - breaking-change
+
+    - title: 🎉 New Features
+      labels:
+        - feat
+
+    - title: 🧰 Bug Fixes
+      labels:
+        - fix
+
+    - title: 📖 Documentation Changes
+      labels:
+        - docs
+
+    - title: 💪 Enhancements
+      labels:
+        - build
+        - chore
+        - ci
+        - perf
+        - refactor
+        - style
+        - test
+
+    - title: ⛓️ Dependency Updates
+      labels:
+        - dependencies
