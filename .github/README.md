@@ -114,7 +114,7 @@ Use "mli [command] --help" for more information about a command.
 
 [**⚠️ Issues**]: https://github.com/5ouma/mli/issues/new/choose
 [**💬 Discussions**]: https://github.com/5ouma/mli/discussions/new/choose
-[**🛡️ Security Policy**]: https://github.com/5ouma/mli?tab=security-ov-file
+[**🛡️ Security Policy**]: ./SECURITY.md
 
 <br /><br />
 
