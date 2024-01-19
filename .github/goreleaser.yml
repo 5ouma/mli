@@ -30,9 +30,8 @@ brews:
     commit_msg_template: "{{ .ProjectName }} {{ .Version }}"
     folder: Formula
     homepage: "https://github.com/5ouma/mli"
-    description: "📑 Manage macOS Login Items"
+    description: "Manage macOS Login Items"
     license: "MIT"
-    custom_block: depends_on :macos
     test: system "#{bin}/#{name}", "-v"
     extra_install: generate_completions_from_executable("#{bin}/#{name}", "completion")
     repository:
