@@ -33,7 +33,7 @@ jobs:
       - name: 🚀 Build and Rrelease with GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
-          args: release --clean -f='.github/goreleaser.yml'
+          args: release --clean --config=.github/goreleaser.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOMEBREW_TAP_TOKEN: ${{ steps.app-token.outputs.token }}
