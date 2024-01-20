@@ -140,11 +140,11 @@ Use "mli [command] --help" for more information about a command.
 
 - [**⚠️ Issues**]: Feature Requests or Bug Reports
 - [**💬 Discussions**]: General Chats or Questions
-- [**🛡️ Security Policy**]: Security Issues that should not be public
+- [**🛡️ Security Advisories**]: Security Issues that should not be public
 
 [**⚠️ Issues**]: https://github.com/5ouma/mli/issues/new/choose
 [**💬 Discussions**]: https://github.com/5ouma/mli/discussions/new/choose
-[**🛡️ Security Policy**]: ./SECURITY.md
+[**🛡️ Security Advisories**]: https://github.com/5ouma/mli/security/advisories/new
 
 <br /><br />
 
