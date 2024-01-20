@@ -91,15 +91,15 @@ Use "mli [command] --help" for more information about a command.
   <div align="center">
     <picture>
       <source
-        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.png"
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.gif"
         media="(prefers-color-scheme: light)"
       />
       <source
-        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/load.png"
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/load.gif"
         media="(prefers-color-scheme: dark)"
       />
       <!-- markdownlint-disable MD013 -->
-      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.png" />
+      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.gif" />
     </picture>
   </div>
 
@@ -122,15 +122,15 @@ Use "mli [command] --help" for more information about a command.
   <div align="center">
     <picture>
       <source
-        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.png"
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.gif"
         media="(prefers-color-scheme: light)"
       />
       <source
-        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/save.png"
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/save.gif"
         media="(prefers-color-scheme: dark)"
       />
       <!-- markdownlint-disable MD013 -->
-      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.png" />
+      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.gif" />
     </picture>
   </div>
 
