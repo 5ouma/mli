@@ -16,15 +16,18 @@ changelog:
       labels:
         - docs
 
-    - title: 💪 Enhancements
+    - title: 🎽 CI & CD
       labels:
         - build
-        - chore
         - ci
+        - test
+
+    - title: 💪 Enhancements
+      labels:
+        - chore
         - perf
         - refactor
         - style
-        - test
 
     - title: ⛓️ Dependency Updates
       labels:
