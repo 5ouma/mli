@@ -3,7 +3,6 @@ Output .github/assets/vhs/light/load.gif
 Require mli
 
 Set FontSize 40
-Set FontFamily "FiraCode"
 Set Height 600
 Set Width 1800
 Set Theme { "background": "#ffffff", "foreground": "#242424", "cursor": "#242424" }
