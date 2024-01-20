@@ -14,6 +14,9 @@ permissions:
 
 jobs:
   VHS:
+    strategy:
+      matrix:
+        commands: [load, save]
     runs-on: macOS-13
 
     steps:
@@ -34,16 +37,16 @@ jobs:
       - name: 🗑️ Delete Login Items
         run: osascript -e 'tell app "System Events" to delete login items'
 
-      - name: ☀️ Record Light Tape
+      - name: ☀️ Record Light ${{ matrix.commands }} Tape
         uses: charmbracelet/vhs-action@v2
         with:
-          path: ".github/assets/vhs/light/*.tape"
+          path: ".github/assets/vhs/light/${{ matrix.commands }}.tape"
           install-fonts: true
 
-      - name: 🌕 Record Dark Tape
+      - name: 🌕 Record Dark ${{ matrix.commands }} Tape
         uses: charmbracelet/vhs-action@v2
         with:
-          path: ".github/assets/vhs/dark/*.tape"
+          path: ".github/assets/vhs/dark/${{ matrix.commands }}.tape"
           install-fonts: true
 
       - name: 🎈 Create Pull Request
