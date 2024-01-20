@@ -3,7 +3,7 @@ Output .github/assets/vhs/dark/load.gif
 Require mli
 
 Set FontSize 40
-Set FontFamily "Fira Code"
+Set FontFamily "FiraCode"
 Set Height 600
 Set Width 1800
 Set Theme { "background": "#0c1117", "foreground": "#f4f4f4", "cursor": "#f4f4f4" }
