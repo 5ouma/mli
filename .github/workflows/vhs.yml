@@ -28,22 +28,19 @@ jobs:
         with:
           go-version-file: "go.mod"
 
-      - name: 🔨 Build a Binary and Export PATH
-        run: |
-          go mod tidy
-          go build -ldflags='-s -w' .
-          export PATH="$PWD:$PATH"
+      - name: 📑 Install mli
+        run: go install github.com/${{ github.repository }}
 
       - name: 🗑️ Delete Login Items
         run: osascript -e 'tell app "System Events" to delete login items'
 
-      - name: ☀️ Record Light ${{ matrix.commands }} Tape
+      - name: ☀️ Record Light Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/light/${{ matrix.commands }}.tape"
           install-fonts: true
 
-      - name: 🌕 Record Dark ${{ matrix.commands }} Tape
+      - name: 🌕 Record Dark Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/dark/${{ matrix.commands }}.tape"
