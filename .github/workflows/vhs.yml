@@ -14,9 +14,6 @@ permissions:
 
 jobs:
   VHS:
-    strategy:
-      matrix:
-        commands: [load, save]
     runs-on: macOS-13
 
     steps:
@@ -29,21 +26,33 @@ jobs:
           go-version-file: "go.mod"
 
       - name: 📑 Install mli
-        run: go install github.com/${{ github.repository }}
+        run: go install github.com/${{ github.repository }}@latest
 
       - name: 🗑️ Delete Login Items
         run: osascript -e 'tell app "System Events" to delete login items'
 
-      - name: ☀️ Record Light Tape
+      - name: ☀️ Record Light Load Tape
         uses: charmbracelet/vhs-action@v2
         with:
-          path: ".github/assets/vhs/light/${{ matrix.commands }}.tape"
+          path: ".github/assets/vhs/light/load.tape"
           install-fonts: true
 
-      - name: 🌕 Record Dark Tape
+      - name: ☀️ Record Light Save Tape
         uses: charmbracelet/vhs-action@v2
         with:
-          path: ".github/assets/vhs/dark/${{ matrix.commands }}.tape"
+          path: ".github/assets/vhs/light/save.tape"
+          install-fonts: true
+
+      - name: 🌕 Record Dark Load Tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: ".github/assets/vhs/dark/load.tape"
+          install-fonts: true
+
+      - name: 🌕 Record Dark Save Tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: ".github/assets/vhs/dark/save.tape"
           install-fonts: true
 
       - name: 🎈 Create Pull Request
