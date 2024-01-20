@@ -88,6 +88,21 @@ Use "mli [command] --help" for more information about a command.
     -h, --help          help for load
   ```
 
+  <div align="center">
+    <picture>
+      <source
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.png"
+        media="(prefers-color-scheme: light)"
+      />
+      <source
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/load.png"
+        media="(prefers-color-scheme: dark)"
+      />
+      <!-- markdownlint-disable MD013 -->
+      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/load.png" />
+    </picture>
+  </div>
+
 <br />
 
 - ### 💾 `Save`
@@ -103,6 +118,21 @@ Use "mli [command] --help" for more information about a command.
     -f, --force         Overwrite existing file
     -h, --help          help for save
   ```
+
+  <div align="center">
+    <picture>
+      <source
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.png"
+        media="(prefers-color-scheme: light)"
+      />
+      <source
+        srcset="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/dark/save.png"
+        media="(prefers-color-scheme: dark)"
+      />
+      <!-- markdownlint-disable MD013 -->
+      <img alt="Load command GIF image generated VHS" src="https://raw.githubusercontent.com/5ouma/mli/HEAD/.github/assets/vhs/light/save.png" />
+    </picture>
+  </div>
 
 <br /><br />
 

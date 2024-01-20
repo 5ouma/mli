@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "App Store",
+    "Path": "/System/Applications/App Store.app",
+    "Hidden": false
+  },
+  {
+    "Name": "Calculator",
+    "Path": "/System/Applications/Calculator.app",
+    "Hidden": false
+  },
+  {
+    "Name": "Notes",
+    "Path": "/System/Applications/Notes.app",
+    "Hidden": false
+  },
+  {
+    "Name": "Photos",
+    "Path": "/System/Applications/Photos.app",
+    "Hidden": false
+  }
+]
