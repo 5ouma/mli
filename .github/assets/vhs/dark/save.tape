@@ -5,7 +5,7 @@ Require mli
 Set FontSize 40
 Set Height 600
 Set Width 1800
-Set Theme { "background": "#0c1117", "foreground": "#f4f4f4", "cursor": "#f4f4f4" }
+Set Theme { "background": "#161b22", "foreground": "#f4f4f4", "cursor": "#f4f4f4" }
 Set Padding 30
 Set TypingSpeed 100ms
 
