@@ -60,6 +60,5 @@ jobs:
 
             Because of the change of related files.
           author: GitHub <noreply@github.com>
-          branch: update-vhs
+          branch: maintenance-vhs
           title: Update GIF image with VHS
-          labels: docs
