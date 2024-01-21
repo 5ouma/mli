@@ -148,6 +148,14 @@ Use "mli [command] --help" for more information about a command.
 
 <br /><br />
 
+## 🎽 Contributing
+
+I happily welcome your contributions!
+Before you contribute,
+I would recommend reading [CONTRIBUTING.md](./CONTRIBUTING.md) for a better development experience.
+
+<br /><br />
+
 ## 💡 Inspired by
 
 - [🚀 **blacktop / lporg**](https://github.com/blacktop/lporg)
