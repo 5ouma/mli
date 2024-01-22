@@ -1,6 +1,6 @@
 name: 🧰 Bug Report
 description: Something doesn't work
-labels: ["fix"]
+labels: ["Type: Bug"]
 body:
   - type: textarea
     id: bug-description

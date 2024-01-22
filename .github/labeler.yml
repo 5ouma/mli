@@ -18,7 +18,3 @@
   - head-branch: ["^dep(endency|endencies|s)?-"]
 "Type: Meta":
   - head-branch: ["^meta-"]
-
-"Status: In Progress":
-  - changed-files:
-      - any-glob-to-any-file: "*"
