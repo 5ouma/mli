@@ -16,7 +16,7 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 	if err != nil {
 		return err
 	}
-	if err := os.WriteFile(path, data, 0644); err != nil {
+	if err := os.WriteFile(path, append(data, 10), 0644); err != nil {
 		return err
 	}
 
