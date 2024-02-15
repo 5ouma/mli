@@ -16,6 +16,7 @@
 <br />
 [![Test](https://img.shields.io/github/actions/workflow/status/5ouma/mli/test.yml?label=test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/test.yml)
 [![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=release&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/5ouma/mli/main.svg?style=flat-square)](https://results.pre-commit.ci/latest/github/5ouma/mli/main)
 
 </div>
 
