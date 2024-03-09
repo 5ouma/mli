@@ -1,4 +1,4 @@
-Output .github/assets/vhs/light/load.gif
+Output .github/assets/vhs/light/check.gif
 
 Require mli
 
@@ -9,7 +9,7 @@ Set Theme { "background": "#f7f8fa", "foreground": "#242424", "cursor": "#242424
 Set Padding 30
 Set TypingSpeed 100ms
 
-Type "mli load --file='.github/assets/example/login_items.json'"
+Type "mli check --file='.github/assets/example/login_items.json'"
 Sleep 1s
 Enter
 Sleep 5s
