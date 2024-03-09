@@ -25,6 +25,7 @@ func New() *cmd {
 	cmd.command.SetVersionTemplate("📑 {{.Use}} {{.Version}}\n")
 	cmd.command.SetErrPrefix("🚨")
 	cmd.command.AddCommand(
+		cmd.newCheckCmd(),
 		cmd.newLoadCmd(),
 		cmd.newSaveCmd(),
 	)

@@ -41,6 +41,11 @@ jobs:
         with:
           path: ".github/assets/vhs/light/save.tape"
 
+      - name: ☀️ Record Light Check Tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: ".github/assets/vhs/light/check.tape"
+
       - name: 🌕 Record Dark Load Tape
         uses: charmbracelet/vhs-action@v2
         with:
@@ -50,6 +55,11 @@ jobs:
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/dark/save.tape"
+
+      - name: 🌕 Record Dark Check Tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: ".github/assets/vhs/dark/check.tape"
 
       - name: 🎈 Create Pull Request
         uses: peter-evans/create-pull-request@v6
