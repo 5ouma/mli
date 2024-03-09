@@ -44,4 +44,5 @@ jobs:
           title: |
             chore(deps): Bump Go version to ${{ steps.go.outputs.version }}
           body: Bumps Go version to ${{ steps.go.outputs.version }}
-          labels: dependencies
+          labels: |
+            Type: Dependencies
