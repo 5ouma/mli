@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  Gum:
+  Go-Update:
     runs-on: Ubuntu-Latest
 
     steps:
@@ -23,10 +23,16 @@ jobs:
           version="$(curl "https://go.dev/VERSION?m=text" | head -n 1)"
           echo "version=${version#go}" | tee -a "$GITHUB_OUTPUT"
 
-      - name: ⬆️ Update Go version
-        run: go mod tidy -go="${{ steps.go.outputs.version }}"
+      - name: 📋 Find and Replace the Gum Version
+        id: find-replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "go [0-9]+.[0-9]+.[0-9]+"
+          replace: "go ${{ steps.go.outputs.version }}"
+          include: "go.mod"
 
       - name: 🎈 Create Pull Request
+        if: ${{ steps.find-replace.outputs.modifiedFiles > 0 }}
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: |
@@ -38,4 +44,5 @@ jobs:
           title: |
             chore(deps): Bump Go version to ${{ steps.go.outputs.version }}
           body: Bumps Go version to ${{ steps.go.outputs.version }}
-          labels: dependencies
+          labels: |
+            Type: Dependencies
