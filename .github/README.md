@@ -43,11 +43,12 @@
 - ### 🐙 [GitHub Releases](https://github.com/5ouma/mli/releases)
 
   ```shell
-  curl -L https://github.com/5ouma/mli/releases/latest/download/mli_Darwin_x86_64.tar.gz | tar -x mli
+  curl -L "https://github.com/5ouma/mli/releases/latest/download/mli_$(uname)_$(uname -m).tar.gz" | tar x 'mli'
   ```
 
   ```shell
-  curl -L https://github.com/5ouma/mli/releases/latest/download/mli_Darwin_arm64.tar.gz | tar -x mli
+  gh release download -R='5ouma/mli' -p="mli_$(uname)_$(uname -m).tar.gz"
+  tar xf "mli_$(uname)_$(uname -m).tar.gz" 'mli'
   ```
 
 <br /><br />
