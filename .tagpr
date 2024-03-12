@@ -2,6 +2,7 @@
   releaseBranch = "main"
   versionFile = "-"
   vPrefix = true
+  changelog = false
   release = false
   majroLabels = "Type: Breaking Change"
   minorLabels = "Type: Feature"
