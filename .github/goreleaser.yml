@@ -5,7 +5,9 @@ before:
     - go mod tidy
 
 builds:
-  - ldflags:
+  - flags:
+      - -trimpath
+    ldflags:
       - -s
       - -w
       - -X "{{ .ModulePath }}/lib.version=v{{ .Version }}"
