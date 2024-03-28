@@ -5,6 +5,8 @@ before:
     - go mod tidy
 
 builds:
+  - flags:
+      - -trimpath
   - ldflags:
       - -s
       - -w
