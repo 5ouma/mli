@@ -4,5 +4,5 @@
   vPrefix = true
   changelog = false
   release = false
-  majroLabels = "Type: Breaking Change"
+  majorLabels = "Type: Breaking Change"
   minorLabels = "Type: Feature"
