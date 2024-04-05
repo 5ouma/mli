@@ -7,7 +7,7 @@ before:
 builds:
   - flags:
       - -trimpath
-  - ldflags:
+    ldflags:
       - -s
       - -w
       - -X "{{ .ModulePath }}/lib.version=v{{ .Version }}"
