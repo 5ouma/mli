@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/5ouma/mli/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -34,13 +35,16 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
+	fmt.Println(lib.H2.Render("💾 Save Login Items"))
 	if err := cmd.loginItems.Get(); err != nil {
+		fmt.Println()
 		return err
 	}
 	if err := cmd.loginItems.Save(path, force); err != nil {
+		fmt.Println()
 		return err
 	}
-	fmt.Printf("✅ Successfully saved to \"%s\"!\n", path)
+	fmt.Println(lib.H1.Render("✅", filepath.Base(path)))
 
 	return nil
 }

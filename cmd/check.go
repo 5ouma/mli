@@ -31,6 +31,7 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
+	fmt.Println(lib.H2.Render("🔍 Check Login Items"))
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
@@ -39,9 +40,10 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 	if !reflect.DeepEqual(cmd.loginItems, loginItems) {
+		fmt.Println()
 		return fmt.Errorf("login items are out-of-date")
 	}
-	fmt.Println("✅ Login Items are up-to-date!")
+	fmt.Println(lib.H1.Render("✅ Login Items are up-to-date!"))
 
 	return nil
 }
