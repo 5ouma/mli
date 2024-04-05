@@ -3,6 +3,8 @@ package lib
 import (
 	"errors"
 	"os"
+
+	"github.com/charmbracelet/lipgloss"
 )
 
 type loginItem struct {
@@ -11,6 +13,24 @@ type loginItem struct {
 	Hidden bool
 }
 type LoginItems []*loginItem
+
+var (
+	heading = lipgloss.NewStyle().
+		Foreground(lipgloss.CompleteColor{TrueColor: "#007aff", ANSI256: "27"}).
+		Bold(true).
+		Padding(1)
+	H1 = heading.Copy()
+	H2 = heading.Copy().SetString("▌")
+
+	item = lipgloss.NewStyle().
+		PaddingLeft(2)
+	CheckedItem = item.Copy().
+			Foreground(lipgloss.CompleteColor{TrueColor: "#63b946", ANSI256: "41"}).
+			SetString("✔︎")
+	WarnedItem = item.Copy().
+			Foreground(lipgloss.CompleteColor{TrueColor: "#ffc627", ANSI256: "226"}).
+			SetString("⚠︎")
+)
 
 func isExist(path string) (bool, error) {
 	if _, err := os.Stat(path); err == nil {

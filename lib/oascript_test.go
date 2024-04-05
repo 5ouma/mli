@@ -43,5 +43,5 @@ func ExampleLoginItems() {
 	loginItems := LoginItems{{"Not found", "/Applications/Not found.app", false}}
 	loginItems.Add()
 	// Output:
-	// ⚠️ not found: "/Applications/Not found.app"
+	// ⚠︎ /Applications/Not found.app
 }

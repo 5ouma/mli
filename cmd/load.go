@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/5ouma/mli/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -29,13 +30,15 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
+	fmt.Println(lib.H2.Render("📂 Load Login Items"))
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
 	if err := cmd.loginItems.Add(); err != nil {
+		fmt.Println()
 		return err
 	}
-	fmt.Printf("✅ Successfully loaded from \"%s\"!\n", path)
+	fmt.Println(lib.H1.Render("✅ Successfully loaded"))
 
 	return nil
 }
