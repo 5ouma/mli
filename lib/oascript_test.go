@@ -23,7 +23,7 @@ func Test_OAScript(t *testing.T) {
 	}
 	data, _ := json.Marshal(previousLoginItems)
 	t.Logf("  previousLoginItems: %v", string(data))
-	if err := previousLoginItems.Add(); err != nil {
+	if _, err := previousLoginItems.Add(); err != nil {
 		t.Fatalf("🚨 %v", err)
 	}
 

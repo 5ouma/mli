@@ -43,17 +43,19 @@ func (loginItems *LoginItems) Get() error {
 	return nil
 }
 
-func (loginItems *LoginItems) Add() error {
+func (loginItems *LoginItems) Add() (bool, error) {
+	loadedCorrectly := true
 	for _, loginItem := range *loginItems {
 		if isExist, err := isExist(loginItem.Path); !isExist && err == nil {
 			fmt.Println(WarnedItem.Render(), loginItem.Path)
+			loadedCorrectly = false
 			continue
 		}
 		if _, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden)); err != nil {
-			return err
+			return false, err
 		}
 		fmt.Println(CheckedItem.Render(), loginItem.Name)
 	}
 
-	return nil
+	return loadedCorrectly, nil
 }
