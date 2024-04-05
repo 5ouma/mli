@@ -23,7 +23,7 @@ func New() *cmd {
 	}
 	cmd.command.CompletionOptions.HiddenDefaultCmd = true
 	cmd.command.SetVersionTemplate("📑 {{.Use}} {{.Version}}\n")
-	cmd.command.SetErrPrefix("🚨")
+	cmd.command.SetErrPrefix(" 🚨")
 	cmd.command.AddCommand(
 		cmd.newCheckCmd(),
 		cmd.newLoadCmd(),
