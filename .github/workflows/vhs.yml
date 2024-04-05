@@ -26,7 +26,7 @@ jobs:
           go-version-file: "go.mod"
 
       - name: 📑 Install mli
-        run: go install github.com/${{ github.repository }}@latest
+        run: go install github.com/${{ github.repository }}@${{ github.ref_name }}
 
       - name: 🗑️ Delete Login Items
         run: osascript -e 'tell app "System Events" to delete login items'
