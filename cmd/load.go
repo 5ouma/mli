@@ -34,11 +34,14 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
-	if err := cmd.loginItems.Add(); err != nil {
+	if loadedCorrectly, err := cmd.loginItems.Add(); err != nil {
 		fmt.Println()
 		return err
+	} else if loadedCorrectly {
+		fmt.Println(lib.H1.Render("✅ Successfully loaded"))
+	} else {
+		fmt.Println(lib.H1.Render("⚠️ Some apps weren't loaded correctly"))
 	}
-	fmt.Println(lib.H1.Render("✅ Successfully loaded"))
 
 	return nil
 }
