@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   VHS:
-    runs-on: macOS-13
+    runs-on: macOS-Latest
 
     steps:
       - name: 🚚 Checkout Repository
