@@ -3,8 +3,7 @@ ci:
     chore(fix): Auto fixes from pre-commit.com hooks
 
     For more information, see https://pre-commit.ci.
-  autoupdate_commit_msg: |
-    chore(deps): Bump pre-commit hook
+  autoupdate_commit_msg: "chore(deps): Bump pre-commit hook"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
