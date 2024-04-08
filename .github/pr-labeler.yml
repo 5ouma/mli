@@ -25,3 +25,5 @@ customLabels:
     label: "Type: Dependencies"
   - text: "- [x] Meta"
     label: "Type: Meta"
+  - text: "Release for v"
+    label: "Type: Release"
