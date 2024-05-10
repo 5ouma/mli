@@ -3,19 +3,21 @@ package lib
 import (
 	"fmt"
 	"runtime/debug"
+	"strings"
 )
 
-var version = "HEAD"
-
 func Version() string {
-	rev := "unknown"
-	if info, ok := debug.ReadBuildInfo(); ok {
-		for _, setting := range info.Settings {
-			if setting.Key == "vcs.revision" {
-				rev = fmt.Sprintf("#%s", setting.Value[:7])
-				break
-			}
-		}
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return "unknown"
 	}
-	return fmt.Sprintf("%s (%s)", version, rev)
+	versions := strings.Split(info.Main.Version, "-")
+	if len(versions) < 3 {
+		if versions[0] == "(devel)" {
+			return "unknown"
+		}
+		return versions[0]
+	}
+	return fmt.Sprintf("%s (#%s)", versions[0], versions[2][:7])
+
 }
