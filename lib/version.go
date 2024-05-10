@@ -5,17 +5,10 @@ import (
 	"runtime/debug"
 )
 
-var version = "HEAD"
-
 func Version() string {
-	rev := "unknown"
-	if info, ok := debug.ReadBuildInfo(); ok {
-		for _, setting := range info.Settings {
-			if setting.Key == "vcs.revision" {
-				rev = fmt.Sprintf("#%s", setting.Value[:7])
-				break
-			}
-		}
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return "unknown"
 	}
-	return fmt.Sprintf("%s (%s)", version, rev)
+	return fmt.Sprintf("%s (#%s)", info.Main.Version, info.Main.Sum[:7])
 }

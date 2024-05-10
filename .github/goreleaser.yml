@@ -4,13 +4,15 @@ before:
   hooks:
     - go mod tidy
 
+gomod:
+  proxy: true
+
 builds:
   - flags:
       - -trimpath
     ldflags:
       - -s
       - -w
-      - -X "{{ .ModulePath }}/lib.version=v{{ .Version }}"
     goos:
       - darwin
     goarch:
