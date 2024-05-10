@@ -2,8 +2,8 @@ name: 🚀 Release
 
 on:
   push:
-    branches:
-      - "main"
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 permissions:
   contents: write
@@ -17,20 +17,12 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🏷️ Create a New Tag
-        id: tagpr
-        uses: Songmu/tagpr@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: 🐹 Setup Go
-        if: ${{ steps.tagpr.outputs.tag != '' }}
         uses: actions/setup-go@v5
         with:
           go-version-file: "go.mod"
 
       - name: 💳 Create GitHub App Token
-        if: ${{ steps.tagpr.outputs.tag != '' }}
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
@@ -40,7 +32,6 @@ jobs:
           repositories: "homebrew-formula"
 
       - name: 🚀 Build and Rrelease with GoReleaser
-        if: ${{ steps.tagpr.outputs.tag != '' }}
         uses: goreleaser/goreleaser-action@v5
         with:
           args: release --clean --config=.github/goreleaser.yml
