@@ -35,31 +35,37 @@ jobs:
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/light/load.tape"
+          install-fonts: true
 
       - name: ☀️ Record Light Save Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/light/save.tape"
+          install-fonts: true
 
       - name: ☀️ Record Light Check Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/light/check.tape"
+          install-fonts: true
 
       - name: 🌕 Record Dark Load Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/dark/load.tape"
+          install-fonts: true
 
       - name: 🌕 Record Dark Save Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/dark/save.tape"
+          install-fonts: true
 
       - name: 🌕 Record Dark Check Tape
         uses: charmbracelet/vhs-action@v2
         with:
           path: ".github/assets/vhs/dark/check.tape"
+          install-fonts: true
 
       - name: 🎈 Create Pull Request
         uses: peter-evans/create-pull-request@v6
