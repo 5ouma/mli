@@ -19,15 +19,15 @@ var (
 		Foreground(lipgloss.CompleteColor{TrueColor: "#007aff", ANSI256: "27"}).
 		Bold(true).
 		Padding(1)
-	H1 = heading.Copy()
-	H2 = heading.Copy().SetString("▌")
+	H1 = heading
+	H2 = heading.SetString("▌")
 
 	item = lipgloss.NewStyle().
 		PaddingLeft(2)
-	CheckedItem = item.Copy().
+	CheckedItem = item.
 			Foreground(lipgloss.CompleteColor{TrueColor: "#63b946", ANSI256: "41"}).
 			SetString("✔︎")
-	WarnedItem = item.Copy().
+	WarnedItem = item.
 			Foreground(lipgloss.CompleteColor{TrueColor: "#ffc627", ANSI256: "226"}).
 			SetString("⚠︎")
 )
