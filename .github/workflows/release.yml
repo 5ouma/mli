@@ -32,7 +32,7 @@ jobs:
           repositories: "homebrew-formula"
 
       - name: 🚀 Build and Rrelease with GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         with:
           args: release --clean --config=.github/goreleaser.yml
         env:

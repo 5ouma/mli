@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 before:
   hooks:
@@ -32,7 +32,7 @@ checksum:
 brews:
   - url_template: "https://github.com/5ouma/{{ .ProjectName }}/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
     commit_msg_template: "{{ .ProjectName }} {{ .Version }}"
-    folder: Formula
+    directory: Formula
     homepage: "https://github.com/5ouma/mli"
     description: "Manage macOS Login Items"
     license: "MIT"
