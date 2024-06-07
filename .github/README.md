@@ -43,17 +43,17 @@
 - ### 🐙 [GitHub Releases](https://github.com/5ouma/mli/releases)
 
   ```shell
-  curl -L "https://github.com/5ouma/mli/releases/latest/download/mli_$(uname)_$(uname -m).tar.gz" | tar x 'mli'
+  curl -L "https://github.com/5ouma/mli/releases/latest/download/mli_$(uname)_$(uname -m).tar.gz" | tar -x 'mli'
   ```
 
   ```shell
   gh release download -R='5ouma/mli' -p="mli_$(uname)_$(uname -m).tar.gz"
-  tar xf "mli_$(uname)_$(uname -m).tar.gz" 'mli'
+  tar -xf "mli_$(uname)_$(uname -m).tar.gz" 'mli'
   ```
 
 <br /><br />
 
-## 👟 Getting Started
+## 📊 Usage
 
 ```shell
 📑 Manage macOS Login Items with JSON
