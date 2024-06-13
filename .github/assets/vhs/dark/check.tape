@@ -3,6 +3,7 @@ Output .github/assets/vhs/dark/check.gif
 Require mli
 
 Set FontSize 40
+Set FontFamily "Fira Code Retina"
 Set Height 600
 Set Width 1800
 Set Theme { "background": "#161b22", "foreground": "#f4f4f4", "cursor": "#f4f4f4" }
