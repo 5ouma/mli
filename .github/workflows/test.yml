@@ -32,5 +32,10 @@ jobs:
       - name: 📊 Static Analysis
         run: go vet -v ./...
 
-      - name: 🧪 Test Packages
-        run: go test -v -race ./...
+      - name: 🧪 Run Tests
+        run: go test -v -race ./... -coverprofile=coverage.txt -covermode=atomic
+
+      - name: ☂️ Upload Coverage
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
