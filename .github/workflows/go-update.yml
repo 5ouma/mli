@@ -36,11 +36,10 @@ jobs:
         uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
           commit-message: |
-            chore(setup): Version up Go
+            chore(deps): Version up Go
 
             Change Go version to v${{ steps.go.outputs.version }}.
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: bump-go
           title: "chore(deps): Bump Go version to ${{ steps.go.outputs.version }}"
           body: Bumps Go version to ${{ steps.go.outputs.version }}
-          labels: "Type: Dependencies"
