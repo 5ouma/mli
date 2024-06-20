@@ -3,8 +3,8 @@ searchTitle: true
 searchBody: true
 
 customLabels:
-  - text: "- [x] 🎉 Feature"
-    label: "🎉 Feature"
+  - text: "- [x] 🎉 New Feature"
+    label: "🎉 New Feature"
   - text: "- [x] 🧰 Bug"
     label: "🧰 Bug"
   - text: "- [x] 🛡️ Security"
@@ -27,5 +27,5 @@ customLabels:
     label: "⛓️ Dependencies"
   - text: "- [x] 🧠 Meta"
     label: "🧠 Meta"
-  - text: "Release for v"
+  - text: "Release v"
     label: "🚀 Release"
