@@ -2,7 +2,7 @@ name: 🐹 Go Update
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: 0 0 * * *
   workflow_dispatch:
 
 permissions:
@@ -27,9 +27,9 @@ jobs:
         id: find-replace
         uses: jacobtomlinson/gha-find-replace@a51bbcd94d000df9ca0fcb54ec8be69aad8374b0 # 3.0.2
         with:
-          find: "go [0-9]+.[0-9]+.[0-9]+"
-          replace: "go ${{ steps.go.outputs.version }}"
-          include: "go.mod"
+          find: go [0-9]+.[0-9]+.[0-9]+
+          replace: go ${{ steps.go.outputs.version }}
+          include: go.mod
 
       - name: 🎈 Create Pull Request
         if: ${{ steps.find-replace.outputs.modifiedFiles > 0 }}

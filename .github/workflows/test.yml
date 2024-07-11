@@ -6,15 +6,15 @@ on:
       - main
     paths:
       - "**.go"
-      - "go.mod"
-      - "go.sum"
-      - ".github/workflows/test.yml"
+      - go.mod
+      - go.sum
+      - .github/workflows/test.yml
   pull_request:
     paths:
       - "**.go"
-      - "go.mod"
-      - "go.sum"
-      - ".github/workflows/test.yml"
+      - go.mod
+      - go.sum
+      - .github/workflows/test.yml
 
 jobs:
   Test:
@@ -27,7 +27,7 @@ jobs:
       - name: 🐹 Setup Go
         uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5.0.2
         with:
-          go-version-file: "go.mod"
+          go-version-file: go.mod
 
       - name: 📊 Static Analysis
         run: go vet -v ./...
