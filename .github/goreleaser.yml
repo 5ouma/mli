@@ -23,19 +23,19 @@ archives:
   - name_template: >-
       {{ .ProjectName }}_
       {{- title .Os }}_
-      {{- if eq .Arch "amd64" }}x86_64
+      {{- if eq .Arch amd64 }}x86_64
       {{- else }}{{ .Arch }}{{ end }}
 
 checksum:
-  name_template: "checksums.txt"
+  name_template: checksums.txt
 
 brews:
   - url_template: "https://github.com/5ouma/{{ .ProjectName }}/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
     commit_msg_template: "{{ .ProjectName }} {{ .Version }}"
     directory: Formula
-    homepage: "https://github.com/5ouma/mli"
-    description: "Manage macOS Login Items"
-    license: "MIT"
+    homepage: https://github.com/5ouma/mli
+    description: Manage macOS Login Items
+    license: MIT
     test: system "#{bin}/#{name}", "-v"
     extra_install: generate_completions_from_executable("#{bin}/#{name}", "completion")
     repository:
