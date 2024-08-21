@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	github.com/andybrewer/mack v0.0.0-20220307193339-22e922cc18af
-	github.com/charmbracelet/lipgloss v0.12.1
+	github.com/charmbracelet/lipgloss v0.13.0
 	github.com/spf13/cobra v1.8.1
 )
 
