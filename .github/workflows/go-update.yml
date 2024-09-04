@@ -39,7 +39,7 @@ jobs:
             chore(deps): Version up Go
 
             Change Go version to v${{ steps.go.outputs.version }}.
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: bump-go
+          sign-commits: true
           title: "chore(deps): Bump Go version to ${{ steps.go.outputs.version }}"
           body: Bumps Go version to ${{ steps.go.outputs.version }}
