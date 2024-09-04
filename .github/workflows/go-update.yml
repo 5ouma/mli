@@ -33,13 +33,13 @@ jobs:
 
       - name: 🎈 Create Pull Request
         if: ${{ steps.find-replace.outputs.modifiedFiles > 0 }}
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
+        uses: peter-evans/create-pull-request@4320041ed380b20e97d388d56a7fb4f9b8c20e79 # v7.0.0
         with:
           commit-message: |
             chore(deps): Version up Go
 
             Change Go version to v${{ steps.go.outputs.version }}.
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: bump-go
+          sign-commits: true
           title: "chore(deps): Bump Go version to ${{ steps.go.outputs.version }}"
           body: Bumps Go version to ${{ steps.go.outputs.version }}
