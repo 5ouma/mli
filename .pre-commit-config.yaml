@@ -23,7 +23,7 @@ repos:
         exclude: ^(.*\.go|go\..*)$
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.24.1
+    rev: v1.24.5
     hooks:
       - id: typos
 
