@@ -1,6 +1,6 @@
 module github.com/5ouma/mli
 
-go 1.23.2
+go 1.23.3
 
 require (
 	github.com/andybrewer/mack v0.0.0-20220307193339-22e922cc18af
