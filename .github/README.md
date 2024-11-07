@@ -27,7 +27,7 @@
 
 - ### 🍺 Homebrew
 
-  ```shell
+  ```sh
   brew install 5ouma/formula/mli
   ```
 
@@ -35,7 +35,7 @@
 
 - ### 🐹 Go
 
-  ```shell
+  ```sh
   go install github.com/5ouma/mli@latest
   ```
 
@@ -43,11 +43,11 @@
 
 - ### 🐙 [GitHub Releases](https://github.com/5ouma/mli/releases)
 
-  ```shell
+  ```sh
   curl -L "https://github.com/5ouma/mli/releases/latest/download/mli_$(uname)_$(uname -m).tar.gz" | tar -x 'mli'
   ```
 
-  ```shell
+  ```sh
   gh release download -R='5ouma/mli' -p="mli_$(uname)_$(uname -m).tar.gz"
   tar -xf "mli_$(uname)_$(uname -m).tar.gz" 'mli'
   ```
@@ -56,7 +56,7 @@
 
 ## 📊 Usage
 
-```shell
+```sh
 📑 Manage macOS Login Items with JSON
 
 Usage:
@@ -81,7 +81,7 @@ Use "mli [command] --help" for more information about a command.
 
 - ### 📂 `Load`
 
-  ```shell
+  ```sh
   📂 Load Login Items from JSON file
 
   Usage:
@@ -111,7 +111,7 @@ Use "mli [command] --help" for more information about a command.
 
 - ### 💾 `Save`
 
-  ```shell
+  ```sh
   💾 Save Login Items to JSON file
 
   Usage:
@@ -140,7 +140,7 @@ Use "mli [command] --help" for more information about a command.
 
 - ### 🔍 `Check`
 
-  ```shell
+  ```sh
   🔍 Check the Login Items are up-to-date
 
   Usage:
