@@ -3,7 +3,7 @@
 ### ⚠️ Issue
 
 close #
-w
+
 <br />
 
 ### ✏️ Description
