@@ -29,5 +29,22 @@ archives:
 checksum:
   name_template: checksums.txt
 
+brews:
+  - url_template: "https://github.com/5ouma/{{ .ProjectName }}/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    commit_msg_template: "{{ .ProjectName }} {{ .Version }}"
+    directory: Formula
+    homepage: https://github.com/5ouma/mli
+    description: Manage macOS Login Items
+    license: MIT
+    test: system "#{bin}/#{name}", "-v"
+    extra_install: generate_completions_from_executable("#{bin}/#{name}", "completion")
+    repository:
+      owner: 5ouma
+      name: homebrew-formula
+      branch: "bump-{{ .ProjectName }}-{{ .Version }}"
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+      pull_request:
+        enabled: true
+
 changelog:
   use: github-native
