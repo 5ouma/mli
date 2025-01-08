@@ -4,20 +4,19 @@
 
 **📑 Manage macOS Login Items**
 
-[![GitHub Release](https://img.shields.io/github/v/release/5ouma/mli?style=flat-square)](https://github.com/5ouma/mli/releases)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/5ouma/mli/total?style=flat-square)
+<br />
+
+[![GitHub Release](https://img.shields.io/github/v/release/5ouma/mli?label=Release&style=flat-square)](https://github.com/5ouma/mli/releases)
+![GitHub Downloads](https://img.shields.io/github/downloads/5ouma/mli/total?label=Downloads&style=flat-square)
 [![Go Docs](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/5ouma/mli)
 [![Go Report Card](https://goreportcard.com/badge/github.com/5ouma/mli?style=flat-square)](https://goreportcard.com/report/github.com/5ouma/mli)
 <br />
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/5ouma/mli?style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/5ouma/mli?style=flat-square)
-[![GitHub last commit](https://img.shields.io/github/last-commit/5ouma/mli?style=flat-square)](https://github.com/5ouma/mli/commit/HEAD)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/5ouma/mli?style=flat-square)](https://github.com/5ouma/mli/commits/main)
-<br />
-[![Test](https://img.shields.io/github/actions/workflow/status/5ouma/mli/test.yml?label=test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/test.yml)
-[![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=release&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
+[![Test](https://img.shields.io/github/actions/workflow/status/5ouma/mli/test.yml?label=Test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/test.yml)
+[![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=Release&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
 [![pre-commit](https://img.shields.io/github/actions/workflow/status/5ouma/mli/pre-commit.yml?label=pre-commit&style=flat-square)](https://github.com/5ouma/utils/actions/workflows/mli.yml)
 [![codecov](https://codecov.io/gh/5ouma/mli/graph/badge.svg)](https://codecov.io/gh/5ouma/mli)
+
+![Repobeats Analytics Image](https://repobeats.axiom.co/api/embed/0dc7cdae7e36b4c193bce1f056102842dc7abaf9.svg)
 
 </div>
 
