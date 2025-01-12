@@ -183,7 +183,7 @@ Use "mli [command] --help" for more information about a command.
 
 I happily welcome your contributions!
 Before you contribute,
-I would recommend reading [CONTRIBUTING.md](./CONTRIBUTING.md) for a better development experience.
+I would recommend reading [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for a better development experience.
 
 <br /><br />
 
