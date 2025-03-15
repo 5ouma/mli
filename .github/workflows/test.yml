@@ -16,6 +16,8 @@ on:
       - go.sum
       - .github/workflows/test.yml
 
+permissions: {}
+
 jobs:
   Test:
     runs-on: macOS-Latest
