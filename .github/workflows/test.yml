@@ -30,9 +30,14 @@ jobs:
           persist-credentials: false
 
       - name: 🐹 Setup Go
+        id: setup-go
         uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
         with:
           go-version-file: go.mod
+
+      - name: 📦 Install Dependencies
+        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
+        run: go mod download
 
       - name: 📊 Static Analysis
         run: go vet -v ./...
