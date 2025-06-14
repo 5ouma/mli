@@ -10,7 +10,7 @@ permissions: {}
 
 jobs:
   tagpr:
-    name: 🏷️ Release a New Version
+    name: 🔖 Release a New Version
     permissions:
       contents: write
       pull-requests: write
@@ -20,12 +20,12 @@ jobs:
       tag: ${{ steps.tagpr.outputs.tag }}
 
     steps:
-      - name: 🚚 Checkout Repository
+      - name: 🚚 Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: true
 
-      - name: 🏷️ Release a New Version
+      - name: 🔖 Release a new version
         id: tagpr
         uses: Songmu/tagpr@812f0c28980cb9a1e5cf427b65c1ac6a1d2b4377 # v1.6.1
         with:
@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release:
-    name: 🚀 Build and Release
+    name: 🛠️ Build and Release
     permissions:
       contents: write
     needs: tagpr
@@ -43,7 +43,7 @@ jobs:
     timeout-minutes: 1
 
     steps:
-      - name: 🚚 Checkout Repository
+      - name: 🚚 Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
@@ -66,7 +66,7 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - name: 🚀 Build and Release with GoReleaser
+      - name: 🛠️ Build and release
         uses: goreleaser/goreleaser-action@9c156ee8a17a598857849441385a2041ef570552 # v6.3.0
         with:
           args: release --clean
