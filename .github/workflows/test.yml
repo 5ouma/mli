@@ -20,6 +20,7 @@ permissions: {}
 
 jobs:
   test:
+    name: 🧪 Test
     runs-on: macOS-Latest
     timeout-minutes: 3
 
