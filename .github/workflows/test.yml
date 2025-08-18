@@ -25,12 +25,12 @@ jobs:
     timeout-minutes: 3
 
     steps:
-      - name: 🚚 Checkout repository
+      - name: 🚚 Check out repository
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
 
-      - name: 🐹 Setup Go
+      - name: 🐹 Set up Go
         id: setup-go
         uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
         with:
