@@ -97,7 +97,7 @@ jobs:
   test:
     name: 🧪 Test
     runs-on: macOS-Latest
-    timeout-minutes: 3
+    timeout-minutes: 1
 
     steps:
       - name: 🚚 Check out repository
@@ -126,7 +126,7 @@ jobs:
   dry-run-publish:
     name: 🚀 Dry Run Publish
     runs-on: Ubuntu-Slim
-    timeout-minutes: 3
+    timeout-minutes: 2
 
     steps:
       - name: 🚚 Check out repository
