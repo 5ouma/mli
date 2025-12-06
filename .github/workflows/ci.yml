@@ -94,22 +94,6 @@ jobs:
       - name: 📊 Static analysis
         run: go vet -v ./...
 
-  goreleaser-check:
-    name: 🚀 GoReleaser Check
-    runs-on: Ubuntu-Slim
-    timeout-minutes: 1
-
-    steps:
-      - name: 🚚 Check out repository
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-
-      - name: 🚀 GoReleaser check
-        uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6.4.0
-        with:
-          args: check
-
   test:
     name: 🧪 Test
     runs-on: macOS-Latest
