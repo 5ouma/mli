@@ -43,7 +43,9 @@ func Test_Save(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			t.Log("🖋️ Save Login Items")
 			path := filepath.Join(t.TempDir(), "login_items.json")
-			os.Create(path)
+			if _, err := os.Create(path); err != nil {
+				t.Fatalf("failed to create test file: %v", err)
+			}
 			err := loginItems.Save(path, test.force)
 			if test.expectedError == nil && err != nil {
 				t.Errorf("🚨 %v", err)

@@ -62,6 +62,9 @@ jobs:
           go-version-file: go.mod
           cache: false
 
+      - name: 📦 Install dependencies
+        run: go mod download
+
       - name: 💳 Create GitHub App Token
         id: app-token
         uses: actions/create-github-app-token@7e473efe3cb98aa54f8d4bac15400b15fad77d94 # v2.2.0

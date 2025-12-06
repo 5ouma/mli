@@ -41,7 +41,7 @@ func Test_OAScript(t *testing.T) {
 
 func ExampleLoginItems() {
 	loginItems := LoginItems{{"Not found", "/Applications/Not found.app", false}}
-	loginItems.Add()
+	_, _ = loginItems.Add()
 	// Output:
 	// ⚠︎ /Applications/Not found.app
 }

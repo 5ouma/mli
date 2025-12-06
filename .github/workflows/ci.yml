@@ -1,0 +1,166 @@
+name: 🎽 CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.go"
+      - go.mod
+      - go.sum
+      - .goreleaser.yml
+      - .github/workflows/ci.yml
+  pull_request:
+    paths:
+      - "**.go"
+      - go.mod
+      - go.sum
+      - .goreleaser.yml
+      - .github/workflows/ci.yml
+
+permissions: {}
+
+jobs:
+  lint-check:
+    name: 🧹 Lint Check
+    runs-on: Ubuntu-Slim
+    timeout-minutes: 2
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🐹 Set up Go
+        id: setup-go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version-file: go.mod
+
+      - name: 📦 Install dependencies
+        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
+        run: go mod download
+
+      - name: 🛡️ Run golangci-lint
+        uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+
+  format-check:
+    name: 📝 Format Check
+    runs-on: Ubuntu-Slim
+    timeout-minutes: 1
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🐹 Set up Go
+        id: setup-go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version-file: go.mod
+
+      - name: 🛡️ Install golangci-lint
+        uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+        with:
+          install-only: true
+
+      - name: 📝 Format check
+        run: golangci-lint fmt -d
+
+  static-analysis:
+    name: 📊 Static Analysis
+    runs-on: Ubuntu-Slim
+    timeout-minutes: 2
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🐹 Set up Go
+        id: setup-go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version-file: go.mod
+
+      - name: 📦 Install dependencies
+        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
+        run: go mod download
+
+      - name: 📊 Static analysis
+        run: go vet -v ./...
+
+  goreleaser-check:
+    name: 🚀 GoReleaser Check
+    runs-on: Ubuntu-Slim
+    timeout-minutes: 1
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🚀 GoReleaser check
+        uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6.4.0
+        with:
+          args: check
+
+  test:
+    name: 🧪 Test
+    runs-on: macOS-Latest
+    timeout-minutes: 3
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🐹 Set up Go
+        id: setup-go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version-file: go.mod
+
+      - name: 📦 Install dependencies
+        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
+        run: go mod download
+
+      - name: 🧪 Run tests
+        run: go test -v -race ./... -coverprofile=coverage.txt -covermode=atomic
+
+      - name: ☂️ Upload coverage
+        uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  dry-run-publish:
+    name: 🚀 Dry Run Publish
+    runs-on: Ubuntu-Slim
+    timeout-minutes: 3
+
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: 🐹 Set up Go
+        id: setup-go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: 📦 Install dependencies
+        run: go mod download
+
+      - name: 🚀 Dry run publish
+        uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6.4.0
+        with:
+          args: release --clean --snapshot
