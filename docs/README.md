@@ -11,7 +11,7 @@
 [![Go Docs](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/5ouma/mli)
 [![Go Report Card](https://goreportcard.com/badge/github.com/5ouma/mli?style=flat-square)](https://goreportcard.com/report/github.com/5ouma/mli)
 <br />
-[![Test](https://img.shields.io/github/actions/workflow/status/5ouma/mli/test.yml?label=Test&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/test.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/5ouma/mli/ci.yml?label=CI&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/CI.yml)
 [![Release](https://img.shields.io/github/actions/workflow/status/5ouma/mli/release.yml?label=Release&style=flat-square)](https://github.com/5ouma/mli/actions/workflows/release.yml)
 [![pre-commit](https://img.shields.io/github/actions/workflow/status/5ouma/mli/pre-commit.yml?label=pre-commit&style=flat-square)](https://github.com/5ouma/utils/actions/workflows/mli.yml)
 [![codecov](https://codecov.io/gh/5ouma/mli/graph/badge.svg)](https://codecov.io/gh/5ouma/mli)
