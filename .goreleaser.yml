@@ -40,7 +40,7 @@ brews:
     extra_install: generate_completions_from_executable("#{bin}/#{name}", "completion")
     repository:
       owner: 5ouma
-      name: homebrew-formula
+      name: homebrew-tap
       branch: "bump-{{ .ProjectName }}-{{ .Version }}"
       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
       pull_request:
