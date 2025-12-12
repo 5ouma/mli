@@ -46,8 +46,8 @@ jobs:
       contents: write
     needs: tagpr
     if: ${{ needs.tagpr.outputs.tag != '' }}
-    runs-on: Ubuntu-Slim
-    timeout-minutes: 1
+    runs-on: Ubuntu-Latest
+    timeout-minutes: 2
 
     steps:
       - name: 🚚 Check out repository
