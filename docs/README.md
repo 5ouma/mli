@@ -27,7 +27,7 @@
 - 🍺 Homebrew
 
   ```sh
-  brew install 5ouma/formula/mli
+  brew install 5ouma/tap/mli
   ```
 
 <br />
