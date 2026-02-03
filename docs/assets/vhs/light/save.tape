@@ -6,7 +6,7 @@ Set FontSize 40
 Set FontFamily "Fira Code Retina"
 Set Height 700
 Set Width 1800
-Set Theme { "background": "#f7f8fa", "foreground": "#242424", "cursor": "#242424" }
+Set Theme { "background": "#f7f8fa", "foreground": "#1f2328", "cursor": "#1f2328" }
 Set Padding 30
 Set TypingSpeed 50ms
 
