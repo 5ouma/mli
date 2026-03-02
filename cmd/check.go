@@ -32,7 +32,9 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
-	lipgloss.Println(lib.H2.Render("🔍 Check Login Items"))
+	if _, err := lipgloss.Println(lib.H2.Render("🔍 Check Login Items")); err != nil {
+		return err
+	}
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
@@ -44,7 +46,9 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		fmt.Println()
 		return fmt.Errorf("login items are out-of-date")
 	}
-	lipgloss.Println(lib.H1.Render("✅ Login Items are up-to-date!"))
+	if _, err := lipgloss.Println(lib.H1.Render("✅ Login Items are up-to-date!")); err != nil {
+		return err
+	}
 
 	return nil
 }

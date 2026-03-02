@@ -31,7 +31,9 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
-	lipgloss.Println(lib.H2.Render("📂 Load Login Items"))
+	if _, err := lipgloss.Println(lib.H2.Render("📂 Load Login Items")); err != nil {
+		return err
+	}
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
@@ -39,9 +41,13 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 		fmt.Println()
 		return err
 	} else if loadedCorrectly {
-		lipgloss.Println(lib.H1.Render("✅ Successfully loaded"))
+		if _, err := lipgloss.Println(lib.H1.Render("✅ Successfully loaded")); err != nil {
+			return err
+		}
 	} else {
-		lipgloss.Println(lib.H1.Render("⚠️ Some apps weren't loaded correctly"))
+		if _, err := lipgloss.Println(lib.H1.Render("⚠️ Some apps weren't loaded correctly")); err != nil {
+			return err
+		}
 	}
 
 	return nil
