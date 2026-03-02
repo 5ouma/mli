@@ -39,9 +39,13 @@ func Test_OAScript(t *testing.T) {
 	}
 }
 
-func ExampleLoginItems() {
+func Test_Add_NotFoundPath(t *testing.T) {
 	loginItems := LoginItems{{"Not found", "/Applications/Not found.app", false}}
-	_, _ = loginItems.Add()
-	// Output:
-	// ⚠︎ /Applications/Not found.app
+	loadedCorrectly, err := loginItems.Add()
+	if err != nil {
+		t.Fatalf("🚨 %v", err)
+	}
+	if loadedCorrectly {
+		t.Fatal("🚨 expected loadedCorrectly to be false")
+	}
 }
