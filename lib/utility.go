@@ -4,7 +4,8 @@ import (
 	"errors"
 	"os"
 
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
+	"charm.land/lipgloss/v2/compat"
 )
 
 type loginItem struct {
@@ -16,7 +17,7 @@ type LoginItems []*loginItem
 
 var (
 	heading = lipgloss.NewStyle().
-		Foreground(lipgloss.CompleteColor{TrueColor: "#007aff", ANSI256: "27"}).
+		Foreground(compat.CompleteColor{TrueColor: lipgloss.Color("#007aff"), ANSI256: lipgloss.Color("27")}).
 		Bold(true).
 		Padding(1)
 	H1 = heading
@@ -25,10 +26,10 @@ var (
 	item = lipgloss.NewStyle().
 		PaddingLeft(2)
 	CheckedItem = item.
-			Foreground(lipgloss.CompleteColor{TrueColor: "#63b946", ANSI256: "41"}).
+			Foreground(compat.CompleteColor{TrueColor: lipgloss.Color("#63b946"), ANSI256: lipgloss.Color("41")}).
 			SetString("✔︎")
 	WarnedItem = item.
-			Foreground(lipgloss.CompleteColor{TrueColor: "#ffc627", ANSI256: "226"}).
+			Foreground(compat.CompleteColor{TrueColor: lipgloss.Color("#ffc627"), ANSI256: lipgloss.Color("226")}).
 			SetString("⚠︎")
 )
 

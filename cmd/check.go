@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"reflect"
 
+	"charm.land/lipgloss/v2"
 	"github.com/5ouma/mli/lib"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +32,9 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
-	fmt.Println(lib.H2.Render("🔍 Check Login Items"))
+	if _, err := lipgloss.Println(lib.H2.Render("🔍 Check Login Items")); err != nil {
+		return err
+	}
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
@@ -43,7 +46,9 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		fmt.Println()
 		return fmt.Errorf("login items are out-of-date")
 	}
-	fmt.Println(lib.H1.Render("✅ Login Items are up-to-date!"))
+	if _, err := lipgloss.Println(lib.H1.Render("✅ Login Items are up-to-date!")); err != nil {
+		return err
+	}
 
 	return nil
 }
