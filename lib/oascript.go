@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"charm.land/lipgloss/v2"
 	"github.com/andybrewer/mack"
 )
 
@@ -34,7 +35,7 @@ func (loginItems *LoginItems) Get() error {
 			return err
 		}
 		*loginItems = append(*loginItems, &loginItem{names[i], path[i], hidden})
-		fmt.Println(CheckedItem.Render(), names[i])
+		lipgloss.Println(CheckedItem.Render(), names[i])
 	}
 	sort.Slice(*loginItems, func(before, after int) bool {
 		return (*loginItems)[before].Name < (*loginItems)[after].Name
@@ -47,14 +48,14 @@ func (loginItems *LoginItems) Add() (bool, error) {
 	loadedCorrectly := true
 	for _, loginItem := range *loginItems {
 		if isExist, err := isExist(loginItem.Path); !isExist && err == nil {
-			fmt.Println(WarnedItem.Render(), loginItem.Path)
+			lipgloss.Println(WarnedItem.Render(), loginItem.Path)
 			loadedCorrectly = false
 			continue
 		}
 		if _, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden)); err != nil {
 			return false, err
 		}
-		fmt.Println(CheckedItem.Render(), loginItem.Name)
+		lipgloss.Println(CheckedItem.Render(), loginItem.Name)
 	}
 
 	return loadedCorrectly, nil

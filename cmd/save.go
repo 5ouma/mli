@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"charm.land/lipgloss/v2"
 	"github.com/5ouma/mli/lib"
 	"github.com/spf13/cobra"
 )
@@ -35,7 +36,7 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
-	fmt.Println(lib.H2.Render("💾 Save Login Items"))
+	lipgloss.Println(lib.H2.Render("💾 Save Login Items"))
 	if err := cmd.loginItems.Get(); err != nil {
 		fmt.Println()
 		return err
@@ -44,7 +45,7 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		fmt.Println()
 		return err
 	}
-	fmt.Println(lib.H1.Render("✅", filepath.Base(path)))
+	lipgloss.Println(lib.H1.Render("✅", filepath.Base(path)))
 
 	return nil
 }
