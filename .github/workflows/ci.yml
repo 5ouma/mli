@@ -97,7 +97,9 @@ jobs:
   test:
     name: 🧪 Test
     runs-on: macOS-Latest
-    environment: CI
+    environment:
+      name: CI
+      deployment: false
     timeout-minutes: 1
 
     steps:
