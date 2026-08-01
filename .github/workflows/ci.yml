@@ -52,7 +52,7 @@ jobs:
   format-check:
     name: 📝 Format Check
     runs-on: Ubuntu-Slim
-    timeout-minutes: 1
+    timeout-minutes: 2
 
     steps:
       - name: 🚚 Check out repository
@@ -104,7 +104,7 @@ jobs:
     environment:
       name: CI
       deployment: false
-    timeout-minutes: 1
+    timeout-minutes: 2
 
     steps:
       - name: 🚚 Check out repository
