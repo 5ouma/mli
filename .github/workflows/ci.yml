@@ -24,9 +24,15 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   lint-check:
     name: 🧹 Lint Check
+    permissions:
+      contents: read
     runs-on: Ubuntu-Slim
     timeout-minutes: 2
 
@@ -51,6 +57,8 @@ jobs:
 
   format-check:
     name: 📝 Format Check
+    permissions:
+      contents: read
     runs-on: Ubuntu-Slim
     timeout-minutes: 2
 
@@ -76,6 +84,8 @@ jobs:
 
   static-analysis:
     name: 📊 Static Analysis
+    permissions:
+      contents: read
     runs-on: Ubuntu-Slim
     timeout-minutes: 2
 
@@ -100,7 +110,9 @@ jobs:
 
   test:
     name: 🧪 Test
-    runs-on: macOS-Latest
+    permissions:
+      contents: read
+    runs-on: macOS-26
     environment:
       name: CI
       deployment: false
@@ -132,6 +144,8 @@ jobs:
 
   dry-run-publish:
     name: 🚀 Dry Run Publish
+    permissions:
+      contents: read
     runs-on: Ubuntu-Slim
     timeout-minutes: 2
 
