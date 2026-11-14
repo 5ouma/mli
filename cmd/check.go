@@ -39,7 +39,7 @@ func (cmd *cmd) execCheckCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 	loginItems := new(lib.LoginItems)
-	if err := loginItems.Get(); err != nil {
+	if err := cmd.getLoginItems(loginItems); err != nil {
 		return err
 	}
 	if !reflect.DeepEqual(cmd.loginItems, loginItems) {

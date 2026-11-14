@@ -37,7 +37,7 @@ func (cmd *cmd) execLoadCmd(command *cobra.Command, args []string) error {
 	if err := cmd.loginItems.Load(path); err != nil {
 		return err
 	}
-	if loadedCorrectly, err := cmd.loginItems.Add(); err != nil {
+	if loadedCorrectly, err := cmd.addLoginItems(); err != nil {
 		fmt.Println()
 		return err
 	} else if loadedCorrectly {
