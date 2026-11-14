@@ -12,6 +12,9 @@ import (
 
 func getLoginItem(entry string) ([]string, error) {
 	data, err := mack.Tell("System Events", fmt.Sprintf("get %s of login items", entry))
+	if data == "" {
+		return nil, err
+	}
 	return strings.Split(data, ", "), err
 }
 
@@ -27,6 +30,9 @@ func (loginItems *LoginItems) Get() error {
 	hides, err := getLoginItem("hidden")
 	if err != nil {
 		return err
+	}
+	if len(names) != len(path) || len(names) != len(hides) {
+		return fmt.Errorf("login item data length mismatch: names=%d paths=%d hidden=%d", len(names), len(path), len(hides))
 	}
 
 	for i := range names {
@@ -49,7 +55,11 @@ func (loginItems *LoginItems) Get() error {
 func (loginItems *LoginItems) Add() (bool, error) {
 	loadedCorrectly := true
 	for _, loginItem := range *loginItems {
-		if isExist, err := isExist(loginItem.Path); !isExist && err == nil {
+		exists, err := isExist(loginItem.Path)
+		if err != nil {
+			return false, err
+		}
+		if !exists {
 			if _, err := lipgloss.Println(WarnedItem.Render(), loginItem.Path); err != nil {
 				return false, err
 			}

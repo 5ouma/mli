@@ -5,148 +5,107 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"reflect"
 	"testing"
 )
 
-func Test_Save(t *testing.T) {
+func TestSave(t *testing.T) {
 	tests := []struct {
-		name          string
-		force         bool
-		expectedError error
+		name        string
+		fileExists  bool
+		force       bool
+		path        string
+		wantErr     bool
+		wantIs      error
+		wantContent bool
 	}{
-		{
-			name:          "✅ Save correct with force",
-			force:         true,
-			expectedError: nil,
-		},
-		{
-			name:          "🔴 Save failed with an already exists error",
-			force:         false,
-			expectedError: os.ErrExist,
-		},
+		{name: "create", wantContent: true},
+		{name: "overwrite", fileExists: true, force: true, wantContent: true},
+		{name: "reject existing file", fileExists: true, wantErr: true, wantIs: os.ErrExist},
+		{name: "missing parent", path: "missing/file.json", wantErr: true, wantIs: os.ErrNotExist},
+		{name: "invalid path", path: "\x00", wantErr: true},
 	}
-
-	t.Log("🏗️ Prepare LoginItems structure")
-	loginItems := LoginItems{
-		{"App Store", "/System/Applications/App Store.app", false},
-		{"Calculator", "/System/Applications/Calculator.app", false},
-		{"Notes", "/System/Applications/Notes.app", false},
-		{"Photos", "/System/Applications/Photos.app", false},
-	}
-	data, err := json.Marshal(loginItems)
-	if err != nil {
-		t.Fatalf("🚨 %v", err)
-	}
-	t.Log(string(data))
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			t.Log("🖋️ Save Login Items")
 			path := filepath.Join(t.TempDir(), "login_items.json")
-			if _, err := os.Create(path); err != nil {
-				t.Fatalf("failed to create test file: %v", err)
+			if test.path != "" {
+				path = filepath.Join(t.TempDir(), test.path)
 			}
-			err := loginItems.Save(path, test.force)
-			if test.expectedError == nil && err != nil {
-				t.Errorf("🚨 %v", err)
-			} else if test.expectedError != nil && err == nil {
-				t.Error("🚨 expected and error")
-			} else if !errors.Is(test.expectedError, err) {
-				t.Errorf("🚨 expected: %v", test.expectedError)
-				t.Errorf("  actual: %v", err)
+			if test.fileExists {
+				if err := os.WriteFile(path, []byte("old"), 0600); err != nil {
+					t.Fatal(err)
+				}
+			}
+
+			items := LoginItems{{"Calculator", "/Applications/Calculator.app", true}}
+			err := items.Save(path, test.force)
+			if (err != nil) != test.wantErr || (test.wantIs != nil && !errors.Is(err, test.wantIs)) {
+				t.Fatalf("Save() error = %v, wantErr %v (matching %v)", err, test.wantErr, test.wantIs)
+			}
+			if !test.wantContent {
+				return
+			}
+			data, err := os.ReadFile(path)
+			if err != nil {
+				t.Fatal(err)
+			}
+			var got LoginItems
+			if err := json.Unmarshal(data, &got); err != nil {
+				t.Fatal(err)
+			}
+			if !reflect.DeepEqual(got, items) {
+				t.Fatalf("saved items = %#v, want %#v", got, items)
+			}
+			if data[len(data)-1] != '\n' {
+				t.Fatal("saved JSON does not end in a newline")
 			}
 		})
 	}
 }
 
-func Test_Load(t *testing.T) {
+func TestLoad(t *testing.T) {
 	tests := []struct {
-		name          string
-		content       string
-		createFile    bool
-		expectedError error
+		name       string
+		content    string
+		fileExists bool
+		directory  bool
+		want       LoginItems
+		wantErr    bool
+		wantIs     error
 	}{
 		{
-			name: "✅ Load successfully",
-			content: `[
-  {
-    "Name": "App Store",
-    "Path": "/System/Applications/App Store.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Calculator",
-    "Path": "/System/Applications/Calculator.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Notes",
-    "Path": "/System/Applications/Notes.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Photos",
-    "Path": "/System/Applications/Photos.app",
-    "Hidden": false
-  }
-]
-`,
-			createFile:    true,
-			expectedError: nil,
+			name:       "valid JSON",
+			content:    `[{"Name":"Notes","Path":"/Applications/Notes.app","Hidden":false}]`,
+			fileExists: true,
+			want:       LoginItems{{"Notes", "/Applications/Notes.app", false}},
 		},
-		{
-			name: "🔴 Load failed with a not exist error",
-			content: `[
-  {
-    "Name": "App Store",
-    "Path": "/System/Applications/App Store.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Calculator",
-    "Path": "/System/Applications/Calculator.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Notes",
-    "Path": "/System/Applications/Notes.app",
-    "Hidden": false
-  },
-  {
-    "Name": "Photos",
-    "Path": "/System/Applications/Photos.app",
-    "Hidden": false
-  }
-]
-`,
-			createFile:    false,
-			expectedError: os.ErrNotExist,
-		},
+		{name: "missing file", wantErr: true, wantIs: os.ErrNotExist},
+		{name: "invalid JSON", content: "{", fileExists: true, wantErr: true},
+		{name: "read directory", directory: true, wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			t.Log("🏗️ Prepare JSON structure")
-			t.Log(test.content)
-
 			path := filepath.Join(t.TempDir(), "login_items.json")
-			if test.createFile {
-				t.Log("🖋️ Save Login Items")
-				if err := os.WriteFile(path, []byte(test.content), os.ModePerm); err != nil {
-					t.Fatalf("🚨 %v", err)
+			if test.fileExists {
+				if err := os.WriteFile(path, []byte(test.content), 0600); err != nil {
+					t.Fatal(err)
+				}
+			}
+			if test.directory {
+				if err := os.Mkdir(path, 0700); err != nil {
+					t.Fatal(err)
 				}
 			}
 
-			t.Log("📘 Read the Saved File")
-			var loginItems LoginItems
-			err := loginItems.Load(path)
-			if test.expectedError == nil && err != nil {
-				t.Errorf("🚨 %v", err)
-			} else if test.expectedError != nil && err == nil {
-				t.Error("🚨 expected and error")
-			} else if !errors.Is(test.expectedError, err) {
-				t.Errorf("🚨 expected: %v", test.expectedError)
-				t.Errorf("  actual: %v", err)
+			var got LoginItems
+			err := got.Load(path)
+			if (err != nil) != test.wantErr || (test.wantIs != nil && !errors.Is(err, test.wantIs)) {
+				t.Fatalf("Load() error = %v, wantErr %v (matching %v)", err, test.wantErr, test.wantIs)
+			}
+			if !test.wantErr && !reflect.DeepEqual(got, test.want) {
+				t.Fatalf("Load() = %#v, want %#v", got, test.want)
 			}
 		})
 	}
