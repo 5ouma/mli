@@ -39,7 +39,7 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 	if _, err := lipgloss.Println(lib.H2.Render("💾 Save Login Items")); err != nil {
 		return err
 	}
-	if err := cmd.loginItems.Get(); err != nil {
+	if err := cmd.getLoginItems(cmd.loginItems); err != nil {
 		fmt.Println()
 		return err
 	}
