@@ -8,7 +8,7 @@ import (
 )
 
 func TestLoadCommand(t *testing.T) {
-	const validFile = `[{"Name":"App","Path":"/App","Hidden":false}]`
+	const validFile = "- name: App\n  path: /App\n  hidden: false\n"
 	tests := []struct {
 		name       string
 		content    string
@@ -36,12 +36,12 @@ func TestLoadCommand(t *testing.T) {
 			wantErr:    true,
 		},
 		{name: "missing file", wantErr: true},
-		{name: "invalid JSON", content: "{", createFile: true, wantErr: true},
+		{name: "invalid YAML", content: "name: [", createFile: true, wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			path := filepath.Join(t.TempDir(), "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.yml")
 			if test.createFile {
 				if err := os.WriteFile(path, []byte(test.content), 0600); err != nil {
 					t.Fatal(err)

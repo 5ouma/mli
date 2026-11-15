@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"bytes"
-	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
@@ -12,6 +11,7 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/5ouma/mli/internal/loginitem"
 	"github.com/spf13/cobra"
+	"go.yaml.in/yaml/v4"
 )
 
 type commandErrorWriter struct {
@@ -73,7 +73,7 @@ func TestCommandFlagErrors(t *testing.T) {
 			name: "save force flag",
 			run: func() error {
 				cobraCommand := &cobra.Command{}
-				cobraCommand.Flags().String("file", "items.json", "")
+				cobraCommand.Flags().String("file", "items.yml", "")
 				return command.execSaveCmd(cobraCommand, nil)
 			},
 		},
@@ -105,7 +105,7 @@ func TestCommandsRejectUnexpectedArgs(t *testing.T) {
 }
 
 func TestCommandOutputErrors(t *testing.T) {
-	const validFile = `[{"Name":"App","Path":"/App","Hidden":false}]`
+	const validFile = "- name: App\n  path: /App\n  hidden: false\n"
 	tests := []struct {
 		name              string
 		args              []string
@@ -118,12 +118,12 @@ func TestCommandOutputErrors(t *testing.T) {
 		{
 			name: "check final output",
 			setup: func(t *testing.T, command *cmd) {
-				path := filepath.Join(t.TempDir(), "items.json")
+				path := filepath.Join(t.TempDir(), "items.yml")
 				if err := os.WriteFile(path, []byte(validFile), 0600); err != nil {
 					t.Fatal(err)
 				}
 				command.getLoginItems = func(items *loginitem.LoginItems) error {
-					return json.Unmarshal([]byte(validFile), items)
+					return yaml.Unmarshal([]byte(validFile), items)
 				}
 				command.command.SetArgs([]string{"check", "--file", path})
 			},
@@ -132,7 +132,7 @@ func TestCommandOutputErrors(t *testing.T) {
 		{
 			name: "load success final output",
 			setup: func(t *testing.T, command *cmd) {
-				path := filepath.Join(t.TempDir(), "items.json")
+				path := filepath.Join(t.TempDir(), "items.yml")
 				if err := os.WriteFile(path, []byte(validFile), 0600); err != nil {
 					t.Fatal(err)
 				}
@@ -144,7 +144,7 @@ func TestCommandOutputErrors(t *testing.T) {
 		{
 			name: "load partial final output",
 			setup: func(t *testing.T, command *cmd) {
-				path := filepath.Join(t.TempDir(), "items.json")
+				path := filepath.Join(t.TempDir(), "items.yml")
 				if err := os.WriteFile(path, []byte(validFile), 0600); err != nil {
 					t.Fatal(err)
 				}
@@ -156,9 +156,9 @@ func TestCommandOutputErrors(t *testing.T) {
 		{
 			name: "save final output",
 			setup: func(t *testing.T, command *cmd) {
-				path := filepath.Join(t.TempDir(), "items.json")
+				path := filepath.Join(t.TempDir(), "items.yml")
 				command.getLoginItems = func(items *loginitem.LoginItems) error {
-					return json.Unmarshal([]byte(validFile), items)
+					return yaml.Unmarshal([]byte(validFile), items)
 				}
 				command.command.SetArgs([]string{"save", "--file", path})
 			},

@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
@@ -9,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/5ouma/mli/internal/loginitem"
+	"go.yaml.in/yaml/v4"
 )
 
 func TestSaveCommand(t *testing.T) {
@@ -23,14 +23,14 @@ func TestSaveCommand(t *testing.T) {
 		{
 			name: "save current items",
 			get: func(items *loginitem.LoginItems) error {
-				return json.Unmarshal([]byte(`[{"Name":"App","Path":"/App","Hidden":true}]`), items)
+				return yaml.Unmarshal([]byte("- name: App\n  path: /App\n  hidden: true\n"), items)
 			},
 			wantSaved: true,
 		},
 		{
 			name: "overwrite existing file",
 			get: func(items *loginitem.LoginItems) error {
-				return json.Unmarshal([]byte(`[{"Name":"App","Path":"/App","Hidden":true}]`), items)
+				return yaml.Unmarshal([]byte("- name: App\n  path: /App\n  hidden: true\n"), items)
 			},
 			existing:  true,
 			force:     true,
@@ -55,7 +55,7 @@ func TestSaveCommand(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			path := filepath.Join(t.TempDir(), "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.yml")
 			if test.existing {
 				if err := os.WriteFile(path, []byte("old"), 0600); err != nil {
 					t.Fatal(err)
@@ -78,7 +78,7 @@ func TestSaveCommand(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if !strings.Contains(string(data), `"Name": "App"`) {
+			if !strings.Contains(string(data), "name: App") {
 				t.Fatalf("saved file = %s, want App entry", data)
 			}
 		})

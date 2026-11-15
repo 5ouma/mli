@@ -10,7 +10,7 @@ Set Theme { "background": "#f7f8fa", "foreground": "#1f2328", "cursor": "#1f2328
 Set Padding 30
 Set TypingSpeed 50ms
 
-Type "mli check --file='docs/assets/example/login_items.json'"
+Type "mli check --file='docs/assets/example/login_items.yml'"
 Sleep 1s
 Enter
 Wait

@@ -13,11 +13,11 @@ func (cmd *cmd) newLoadCmd() *cobra.Command {
 	loadCmd := &cobra.Command{
 		Use:   "load",
 		Short: "Load Login Items",
-		Long:  "📂 Load Login Items from JSON file",
+		Long:  "📂 Load Login Items from YAML file",
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execLoadCmd,
 	}
-	loadCmd.Flags().String("file", "./login_items.json", "Load from this JSON file")
+	loadCmd.Flags().String("file", "./login_items.yml", "Load from this YAML file")
 	return loadCmd
 }
 

@@ -20,7 +20,7 @@ body:
       label: 🏭 How to Reproduce the Bug
       description: Steps to reproduce the behavior
       placeholder: |
-        Run this command with this `login_items.json`
+        Run this command with this `login_items.yml`
     validations:
       required: true
 

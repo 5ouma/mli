@@ -1,0 +1,12 @@
+- name: App Store
+  path: /System/Applications/App Store.app
+  hidden: false
+- name: Calculator
+  path: /System/Applications/Calculator.app
+  hidden: false
+- name: Notes
+  path: /System/Applications/Notes.app
+  hidden: false
+- name: Photos
+  path: /System/Applications/Photos.app
+  hidden: false

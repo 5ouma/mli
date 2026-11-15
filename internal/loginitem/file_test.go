@@ -1,12 +1,13 @@
 package loginitem
 
 import (
-	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
+
+	"go.yaml.in/yaml/v4"
 )
 
 func TestSave(t *testing.T) {
@@ -22,13 +23,13 @@ func TestSave(t *testing.T) {
 		{name: "create", wantContent: true},
 		{name: "overwrite", fileExists: true, force: true, wantContent: true},
 		{name: "reject existing file", fileExists: true, wantErr: true, wantIs: os.ErrExist},
-		{name: "missing parent", path: "missing/file.json", wantErr: true, wantIs: os.ErrNotExist},
+		{name: "missing parent", path: "missing/file.yml", wantErr: true, wantIs: os.ErrNotExist},
 		{name: "invalid path", path: "\x00", wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			path := filepath.Join(t.TempDir(), "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.yml")
 			if test.path != "" {
 				path = filepath.Join(t.TempDir(), test.path)
 			}
@@ -51,14 +52,14 @@ func TestSave(t *testing.T) {
 				t.Fatal(err)
 			}
 			var got LoginItems
-			if err := json.Unmarshal(data, &got); err != nil {
+			if err := yaml.Unmarshal(data, &got); err != nil {
 				t.Fatal(err)
 			}
 			if !reflect.DeepEqual(got, items) {
 				t.Fatalf("saved items = %#v, want %#v", got, items)
 			}
 			if data[len(data)-1] != '\n' {
-				t.Fatal("saved JSON does not end in a newline")
+				t.Fatal("saved YAML does not end in a newline")
 			}
 		})
 	}
@@ -76,20 +77,20 @@ func TestLoad(t *testing.T) {
 		wantIs      error
 	}{
 		{
-			name:       "valid JSON",
-			content:    `[{"Name":"Notes","Path":"/Applications/Notes.app","Hidden":false}]`,
+			name:       "valid YAML",
+			content:    "- name: Notes\n  path: /Applications/Notes.app\n  hidden: false\n",
 			fileExists: true,
 			want:       LoginItems{{"Notes", "/Applications/Notes.app", false}},
 		},
 		{name: "missing file", wantErr: true, wantIs: os.ErrNotExist},
-		{name: "invalid JSON", content: "{", fileExists: true, wantErr: true},
+		{name: "invalid YAML", content: "name: [", fileExists: true, wantErr: true},
 		{name: "read directory", directory: true, wantErr: true},
 		{name: "invalid path", invalidPath: true, wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			path := filepath.Join(t.TempDir(), "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.yml")
 			if test.invalidPath {
 				path = "\x00"
 			}
