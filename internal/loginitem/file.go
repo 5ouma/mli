@@ -1,9 +1,10 @@
 package loginitem
 
 import (
-	"encoding/json"
 	"errors"
 	"os"
+
+	"go.yaml.in/yaml/v4"
 )
 
 func (loginItems *LoginItems) Save(path string, force bool) error {
@@ -13,11 +14,11 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 		return os.ErrExist
 	}
 
-	data, err := json.MarshalIndent(loginItems, "", "  ")
+	data, err := yaml.Marshal(loginItems)
 	if err != nil {
 		return err
 	}
-	if err := os.WriteFile(path, append(data, 10), 0644); err != nil {
+	if err := os.WriteFile(path, data, 0644); err != nil {
 		return err
 	}
 
@@ -35,7 +36,7 @@ func (loginItems *LoginItems) Load(path string) error {
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(data, loginItems); err != nil {
+	if err := yaml.Unmarshal(data, loginItems); err != nil {
 		return err
 	}
 

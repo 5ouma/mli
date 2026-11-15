@@ -1,9 +1,9 @@
 package loginitem
 
 type loginItem struct {
-	Name   string
-	Path   string
-	Hidden bool
+	Name   string `yaml:"name"`
+	Path   string `yaml:"path"`
+	Hidden bool   `yaml:"hidden"`
 }
 
 type LoginItems []*loginItem
