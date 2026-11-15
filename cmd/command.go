@@ -15,6 +15,7 @@ type cmd struct {
 	addLoginItems func() (bool, error)
 }
 
+// Creates and configures the root Cobra command for mli.
 func New() *cmd {
 	loginItems := new(loginitem.LoginItems)
 	info, ok := debug.ReadBuildInfo()
