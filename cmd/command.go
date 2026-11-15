@@ -22,7 +22,7 @@ func New() *cmd {
 		command: &cobra.Command{
 			Use:          "mli",
 			Short:        "📑 Manage macOS Login Items",
-			Long:         "📑 Manage macOS Login Items with JSON",
+			Long:         "📑 Manage macOS Login Items with YAML",
 			Version:      utils.Version(info, ok),
 			SilenceUsage: true,
 		},

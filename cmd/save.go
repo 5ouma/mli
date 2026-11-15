@@ -13,11 +13,11 @@ func (cmd *cmd) newSaveCmd() *cobra.Command {
 	saveCmd := &cobra.Command{
 		Use:   "save",
 		Short: "Save Login Items",
-		Long:  "💾 Save Login Items to JSON file",
+		Long:  "💾 Save Login Items to YAML file",
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execSaveCmd,
 	}
-	saveCmd.Flags().String("file", "./login_items.json", "Save to this JSON file")
+	saveCmd.Flags().String("file", "./login_items.yml", "Save to this YAML file")
 	saveCmd.Flags().BoolP("force", "f", false, "Overwrite existing file")
 	return saveCmd
 }

@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
@@ -9,10 +8,11 @@ import (
 	"testing"
 
 	"github.com/5ouma/mli/internal/loginitem"
+	"go.yaml.in/yaml/v4"
 )
 
 func TestCheckCommand(t *testing.T) {
-	const validFile = `[{"Name":"App","Path":"/App","Hidden":false}]`
+	const validFile = "- name: App\n  path: /App\n  hidden: false\n"
 	tests := []struct {
 		name       string
 		content    string
@@ -25,7 +25,7 @@ func TestCheckCommand(t *testing.T) {
 			content:    validFile,
 			createFile: true,
 			get: func(items *loginitem.LoginItems) error {
-				return json.Unmarshal([]byte(validFile), items)
+				return yaml.Unmarshal([]byte(validFile), items)
 			},
 		},
 		{
@@ -33,7 +33,7 @@ func TestCheckCommand(t *testing.T) {
 			content:    validFile,
 			createFile: true,
 			get: func(items *loginitem.LoginItems) error {
-				return json.Unmarshal([]byte(`[{"Name":"Other","Path":"/Other","Hidden":false}]`), items)
+				return yaml.Unmarshal([]byte("- name: Other\n  path: /Other\n  hidden: false\n"), items)
 			},
 			wantErr: true,
 		},
@@ -47,12 +47,12 @@ func TestCheckCommand(t *testing.T) {
 			wantErr: true,
 		},
 		{name: "missing file", wantErr: true},
-		{name: "invalid JSON", content: "{", createFile: true, wantErr: true},
+		{name: "invalid YAML", content: "name: [", createFile: true, wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			path := filepath.Join(t.TempDir(), "login_items.json")
+			path := filepath.Join(t.TempDir(), "login_items.yml")
 			if test.createFile {
 				if err := os.WriteFile(path, []byte(test.content), 0600); err != nil {
 					t.Fatal(err)

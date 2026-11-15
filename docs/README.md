@@ -55,7 +55,7 @@
 ## 📊 Usage
 
 ```sh
-📑 Manage macOS Login Items with JSON
+📑 Manage macOS Login Items with YAML
 
 Usage:
   mli [command]
@@ -80,13 +80,13 @@ Use "mli [command] --help" for more information about a command.
 ### 📂 `Load`
 
 ```sh
-📂 Load Login Items from JSON file
+📂 Load Login Items from YAML file
 
 Usage:
   mli load [flags]
 
 Flags:
-      --file string   Load from this JSON file (default "./login_items.json")
+      --file string   Load from this YAML file (default "./login_items.yml")
   -h, --help          help for load
 ```
 
@@ -109,13 +109,13 @@ Flags:
 ### 💾 `Save`
 
 ```sh
-💾 Save Login Items to JSON file
+💾 Save Login Items to YAML file
 
 Usage:
   mli save [flags]
 
 Flags:
-      --file string   Save to this JSON file (default "./login_items.json")
+      --file string   Save to this YAML file (default "./login_items.yml")
   -f, --force         Overwrite existing file
   -h, --help          help for save
 ```
@@ -143,7 +143,7 @@ Usage:
   mli check [flags]
 
 Flags:
-      --file string   Check Login Items from this JSON file (default "./login_items.json")
+      --file string   Check Login Items from this YAML file (default "./login_items.yml")
   -h, --help          help for check
 ```
 

@@ -19,7 +19,7 @@ func (cmd *cmd) newCheckCmd() *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE:  cmd.execCheckCmd,
 	}
-	checkCmd.Flags().String("file", "./login_items.json", "Check Login Items from this JSON file")
+	checkCmd.Flags().String("file", "./login_items.yml", "Check Login Items from this YAML file")
 	return checkCmd
 }
 
