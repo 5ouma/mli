@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 
 	"charm.land/lipgloss/v2"
-	"github.com/5ouma/mli/lib"
+	"github.com/5ouma/mli/internal/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +36,7 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		return err
 	}
 
-	if _, err := lipgloss.Println(lib.H2.Render("💾 Save Login Items")); err != nil {
+	if _, err := lipgloss.Println(utils.H2.Render("💾 Save Login Items")); err != nil {
 		return err
 	}
 	if err := cmd.getLoginItems(cmd.loginItems); err != nil {
@@ -47,7 +47,7 @@ func (cmd *cmd) execSaveCmd(command *cobra.Command, args []string) error {
 		fmt.Println()
 		return err
 	}
-	if _, err := lipgloss.Println(lib.H1.Render("✅", filepath.Base(path))); err != nil {
+	if _, err := lipgloss.Println(utils.H1.Render("✅", filepath.Base(path))); err != nil {
 		return err
 	}
 

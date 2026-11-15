@@ -1,4 +1,4 @@
-package lib
+package utils
 
 import (
 	"fmt"
@@ -6,8 +6,7 @@ import (
 	"strings"
 )
 
-func Version() string {
-	info, ok := debug.ReadBuildInfo()
+func Version(info *debug.BuildInfo, ok bool) string {
 	if !ok {
 		return "unknown"
 	}
