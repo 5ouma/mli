@@ -19,6 +19,7 @@ func getLoginItem(entry string) ([]string, error) {
 	return strings.Split(data, ", "), err
 }
 
+// Appends the current macOS login items to the receiver.
 func (loginItems *LoginItems) Get() error {
 	names, err := getLoginItem("name")
 	if err != nil {
@@ -53,6 +54,7 @@ func (loginItems *LoginItems) Get() error {
 	return nil
 }
 
+// Adds the receiver's items to macOS as login items, reporting whether all entries were loaded.
 func (loginItems *LoginItems) Add() (bool, error) {
 	loadedCorrectly := true
 	for _, loginItem := range *loginItems {

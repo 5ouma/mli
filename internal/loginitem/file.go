@@ -7,6 +7,7 @@ import (
 	"go.yaml.in/yaml/v4"
 )
 
+// Writes the login items to a YAML file, unless an existing file is protected from overwrite.
 func (loginItems *LoginItems) Save(path string, force bool) error {
 	if isExist, err := isExist(path); err != nil {
 		return err
@@ -25,6 +26,7 @@ func (loginItems *LoginItems) Save(path string, force bool) error {
 	return nil
 }
 
+// Replaces the current login items with entries read from a YAML file.
 func (loginItems *LoginItems) Load(path string) error {
 	if isExist, err := isExist(path); err != nil {
 		return err

@@ -6,4 +6,5 @@ type loginItem struct {
 	Hidden bool   `yaml:"hidden"`
 }
 
+// Represents the set of macOS login items managed by the application.
 type LoginItems []*loginItem

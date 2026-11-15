@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Returns a display version derived from build information, or unknown when unavailable.
 func Version(info *debug.BuildInfo, ok bool) string {
 	if !ok {
 		return "unknown"
