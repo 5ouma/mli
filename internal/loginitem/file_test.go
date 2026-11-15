@@ -1,4 +1,4 @@
-package lib
+package loginitem
 
 import (
 	"encoding/json"
@@ -66,13 +66,14 @@ func TestSave(t *testing.T) {
 
 func TestLoad(t *testing.T) {
 	tests := []struct {
-		name       string
-		content    string
-		fileExists bool
-		directory  bool
-		want       LoginItems
-		wantErr    bool
-		wantIs     error
+		name        string
+		content     string
+		fileExists  bool
+		directory   bool
+		invalidPath bool
+		want        LoginItems
+		wantErr     bool
+		wantIs      error
 	}{
 		{
 			name:       "valid JSON",
@@ -83,16 +84,21 @@ func TestLoad(t *testing.T) {
 		{name: "missing file", wantErr: true, wantIs: os.ErrNotExist},
 		{name: "invalid JSON", content: "{", fileExists: true, wantErr: true},
 		{name: "read directory", directory: true, wantErr: true},
+		{name: "invalid path", invalidPath: true, wantErr: true},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			path := filepath.Join(t.TempDir(), "login_items.json")
+			if test.invalidPath {
+				path = "\x00"
+			}
 			if test.fileExists {
 				if err := os.WriteFile(path, []byte(test.content), 0600); err != nil {
 					t.Fatal(err)
 				}
 			}
+
 			if test.directory {
 				if err := os.Mkdir(path, 0700); err != nil {
 					t.Fatal(err)

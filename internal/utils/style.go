@@ -1,19 +1,9 @@
-package lib
+package utils
 
 import (
-	"errors"
-	"os"
-
 	"charm.land/lipgloss/v2"
 	"charm.land/lipgloss/v2/compat"
 )
-
-type loginItem struct {
-	Name   string
-	Path   string
-	Hidden bool
-}
-type LoginItems []*loginItem
 
 var (
 	heading = lipgloss.NewStyle().
@@ -32,13 +22,3 @@ var (
 			Foreground(compat.CompleteColor{TrueColor: lipgloss.Color("#ffc627"), ANSI256: lipgloss.Color("226")}).
 			SetString("⚠︎")
 )
-
-func isExist(path string) (bool, error) {
-	if _, err := os.Stat(path); err == nil {
-		return true, nil
-	} else if errors.Is(err, os.ErrNotExist) {
-		return false, nil
-	} else {
-		return false, err
-	}
-}

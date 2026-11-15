@@ -8,13 +8,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/5ouma/mli/lib"
+	"github.com/5ouma/mli/internal/loginitem"
 )
 
 func TestSaveCommand(t *testing.T) {
 	tests := []struct {
 		name      string
-		get       func(*lib.LoginItems) error
+		get       func(*loginitem.LoginItems) error
 		existing  bool
 		force     bool
 		wantErr   bool
@@ -22,14 +22,14 @@ func TestSaveCommand(t *testing.T) {
 	}{
 		{
 			name: "save current items",
-			get: func(items *lib.LoginItems) error {
+			get: func(items *loginitem.LoginItems) error {
 				return json.Unmarshal([]byte(`[{"Name":"App","Path":"/App","Hidden":true}]`), items)
 			},
 			wantSaved: true,
 		},
 		{
 			name: "overwrite existing file",
-			get: func(items *lib.LoginItems) error {
+			get: func(items *loginitem.LoginItems) error {
 				return json.Unmarshal([]byte(`[{"Name":"App","Path":"/App","Hidden":true}]`), items)
 			},
 			existing:  true,
@@ -38,7 +38,7 @@ func TestSaveCommand(t *testing.T) {
 		},
 		{
 			name: "refuse existing file",
-			get: func(*lib.LoginItems) error {
+			get: func(*loginitem.LoginItems) error {
 				return nil
 			},
 			existing: true,
@@ -46,7 +46,7 @@ func TestSaveCommand(t *testing.T) {
 		},
 		{
 			name: "System Events error",
-			get: func(*lib.LoginItems) error {
+			get: func(*loginitem.LoginItems) error {
 				return errors.New("System Events failed")
 			},
 			wantErr: true,

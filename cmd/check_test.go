@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/5ouma/mli/lib"
+	"github.com/5ouma/mli/internal/loginitem"
 )
 
 func TestCheckCommand(t *testing.T) {
@@ -17,14 +17,14 @@ func TestCheckCommand(t *testing.T) {
 		name       string
 		content    string
 		createFile bool
-		get        func(*lib.LoginItems) error
+		get        func(*loginitem.LoginItems) error
 		wantErr    bool
 	}{
 		{
 			name:       "up to date",
 			content:    validFile,
 			createFile: true,
-			get: func(items *lib.LoginItems) error {
+			get: func(items *loginitem.LoginItems) error {
 				return json.Unmarshal([]byte(validFile), items)
 			},
 		},
@@ -32,7 +32,7 @@ func TestCheckCommand(t *testing.T) {
 			name:       "out of date",
 			content:    validFile,
 			createFile: true,
-			get: func(items *lib.LoginItems) error {
+			get: func(items *loginitem.LoginItems) error {
 				return json.Unmarshal([]byte(`[{"Name":"Other","Path":"/Other","Hidden":false}]`), items)
 			},
 			wantErr: true,
@@ -41,7 +41,7 @@ func TestCheckCommand(t *testing.T) {
 			name:       "System Events error",
 			content:    validFile,
 			createFile: true,
-			get: func(*lib.LoginItems) error {
+			get: func(*loginitem.LoginItems) error {
 				return errors.New("System Events failed")
 			},
 			wantErr: true,

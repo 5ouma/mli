@@ -1,7 +1,8 @@
-package lib
+package loginitem
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 )
 
@@ -39,4 +40,14 @@ func (loginItems *LoginItems) Load(path string) error {
 	}
 
 	return nil
+}
+
+func isExist(path string) (bool, error) {
+	if _, err := os.Stat(path); err == nil {
+		return true, nil
+	} else if errors.Is(err, os.ErrNotExist) {
+		return false, nil
+	} else {
+		return false, err
+	}
 }

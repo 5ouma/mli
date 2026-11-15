@@ -1,4 +1,4 @@
-package lib
+package loginitem
 
 import (
 	"fmt"
@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"charm.land/lipgloss/v2"
+	"github.com/5ouma/mli/internal/utils"
 	"github.com/andybrewer/mack"
 )
 
@@ -41,7 +42,7 @@ func (loginItems *LoginItems) Get() error {
 			return err
 		}
 		*loginItems = append(*loginItems, &loginItem{names[i], path[i], hidden})
-		if _, err := lipgloss.Println(CheckedItem.Render(), names[i]); err != nil {
+		if _, err := lipgloss.Println(utils.CheckedItem.Render(), names[i]); err != nil {
 			return err
 		}
 	}
@@ -60,7 +61,7 @@ func (loginItems *LoginItems) Add() (bool, error) {
 			return false, err
 		}
 		if !exists {
-			if _, err := lipgloss.Println(WarnedItem.Render(), loginItem.Path); err != nil {
+			if _, err := lipgloss.Println(utils.WarnedItem.Render(), loginItem.Path); err != nil {
 				return false, err
 			}
 			loadedCorrectly = false
@@ -69,7 +70,7 @@ func (loginItems *LoginItems) Add() (bool, error) {
 		if _, err := mack.Tell("System Events", fmt.Sprintf(`make login item at end with properties { name: "%s", path: "%s", hidden: %v }`, loginItem.Name, loginItem.Path, loginItem.Hidden)); err != nil {
 			return false, err
 		}
-		if _, err := lipgloss.Println(CheckedItem.Render(), loginItem.Name); err != nil {
+		if _, err := lipgloss.Println(utils.CheckedItem.Render(), loginItem.Name); err != nil {
 			return false, err
 		}
 	}

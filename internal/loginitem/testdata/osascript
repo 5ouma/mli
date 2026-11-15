@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "$2" >>"$LOGIN_ITEM_COMMAND_LOG"
+
+case "$2" in
+  *"get name of login items"*) key=name; result=$LOGIN_ITEM_NAMES ;;
+  *"get path of login items"*) key=path; result=$LOGIN_ITEM_PATHS ;;
+  *"get hidden of login items"*) key=hidden; result=$LOGIN_ITEM_HIDDEN ;;
+  *"make login item at end"*) key=add; result= ;;
+  *)
+    echo "unexpected command: $2" >&2
+    exit 1
+    ;;
+esac
+
+if [[ "$LOGIN_ITEM_FAIL_ON" == "$key" ]]; then
+  echo "$key failed" >&2
+  exit 1
+fi
+
+echo -n "$result"

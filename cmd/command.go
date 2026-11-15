@@ -1,29 +1,33 @@
 package cmd
 
 import (
-	"github.com/5ouma/mli/lib"
+	"runtime/debug"
+
+	"github.com/5ouma/mli/internal/loginitem"
+	"github.com/5ouma/mli/internal/utils"
 	"github.com/spf13/cobra"
 )
 
 type cmd struct {
 	command       *cobra.Command
-	loginItems    *lib.LoginItems
-	getLoginItems func(*lib.LoginItems) error
+	loginItems    *loginitem.LoginItems
+	getLoginItems func(*loginitem.LoginItems) error
 	addLoginItems func() (bool, error)
 }
 
 func New() *cmd {
-	loginItems := new(lib.LoginItems)
+	loginItems := new(loginitem.LoginItems)
+	info, ok := debug.ReadBuildInfo()
 	cmd := &cmd{
 		command: &cobra.Command{
 			Use:          "mli",
 			Short:        "📑 Manage macOS Login Items",
 			Long:         "📑 Manage macOS Login Items with JSON",
-			Version:      lib.Version(),
+			Version:      utils.Version(info, ok),
 			SilenceUsage: true,
 		},
 		loginItems:    loginItems,
-		getLoginItems: (*lib.LoginItems).Get,
+		getLoginItems: (*loginitem.LoginItems).Get,
 		addLoginItems: loginItems.Add,
 	}
 	cmd.command.CompletionOptions.HiddenDefaultCmd = true
