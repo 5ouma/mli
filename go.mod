@@ -3,7 +3,7 @@ module github.com/5ouma/mli
 go 1.26.7
 
 require (
-	charm.land/lipgloss/v2 v2.1.0
+	charm.land/lipgloss/v2 v2.1.1
 	github.com/andybrewer/mack v0.0.0-20251024001139-afd410b36447
 	github.com/spf13/cobra v1.10.2
 	go.yaml.in/yaml/v4 v4.0.0
